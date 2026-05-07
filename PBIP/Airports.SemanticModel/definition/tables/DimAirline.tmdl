@@ -142,6 +142,12 @@ table DimAirline
 		formatString: 0
 		lineageTag: 54caf8f7-80b8-48e2-a56c-0eb949c52f92
 
+	measure MesureTest = ```
+			1 
+			```
+		formatString: 0
+		lineageTag: d53de454-136c-443b-9d48-00d5a9ca813b
+
 	column AirlineID
 		dataType: string
 		lineageTag: af8628fd-23d9-4d42-9fe4-7510aeef5fb3
