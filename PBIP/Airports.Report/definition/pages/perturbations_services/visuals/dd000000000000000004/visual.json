@@ -22,11 +22,11 @@
                       "Entity": "Fact_Flights"
                     }
                   },
-                  "Property": "Attente moyenne (min)"
+                  "Property": "Attente moyenne (min) N a date"
                 }
               },
-              "queryRef": "Fact_Flights.Attente moyenne (min)",
-              "nativeQueryRef": "Attente moyenne (min)"
+              "queryRef": "Fact_Flights.Attente moyenne (min) N a date",
+              "nativeQueryRef": "Attente moyenne (min) N a date"
             },
             {
               "field": {

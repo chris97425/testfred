@@ -22,11 +22,11 @@
                       "Entity": "Fact_Flights"
                     }
                   },
-                  "Property": "Total passagers"
+                  "Property": "Total passagers N a date"
                 }
               },
-              "queryRef": "Fact_Flights.Total passagers",
-              "nativeQueryRef": "Total passagers"
+              "queryRef": "Fact_Flights.Total passagers N a date",
+              "nativeQueryRef": "Total passagers N a date"
             },
             {
               "field": {

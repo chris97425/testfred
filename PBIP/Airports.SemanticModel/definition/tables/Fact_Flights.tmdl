@@ -72,205 +72,229 @@ table Fact_Flights
 		lineageTag: 3f6fcda0-3806-45f7-9f77-713fcf905312
 
 	measure 'Signal total passagers' =
-			VAR CurrentValue = [Total passagers]
-			VAR PreviousValue =
-				CALCULATE([Total passagers], DATEADD('Dim_Date'[Date], -1, MONTH))
-			VAR Delta = DIVIDE(CurrentValue - PreviousValue, PreviousValue)
+			VAR Prev = [Total passagers N-1 a date]
+			VAR Pct = [Ecart % Total passagers N a date vs N-1 a date]
 			RETURN
 				IF(
-					ISBLANK(PreviousValue),
-					"Tendance non disponible",
+					ISBLANK(Prev),
+					"Comparaison N-1 a date non disponible",
 					IF(
-						Delta >= 0,
-						"Vert - hausse vs periode precedente: +" & FORMAT(Delta, "0.0%"),
-						"Rouge - baisse vs periode precedente: " & FORMAT(Delta, "0.0%")
+						ISBLANK(Pct),
+						"Comparaison N-1 a date non disponible",
+						IF(
+							Pct >= 0,
+							UNICHAR(128994) & " +" & FORMAT(Pct, "0.0%") & " vs N-1 a date",
+							UNICHAR(128308) & " " & FORMAT(Pct, "0.0%") & " vs N-1 a date"
+						)
 					)
 				)
 		lineageTag: 41000000-0000-0000-0000-000000000001
 
 	measure 'Signal nombre de vols' =
-			VAR CurrentValue = [Nombre de vols]
-			VAR PreviousValue =
-				CALCULATE([Nombre de vols], DATEADD('Dim_Date'[Date], -1, MONTH))
-			VAR Delta = DIVIDE(CurrentValue - PreviousValue, PreviousValue)
+			VAR Prev = [Nombre de vols N-1 a date]
+			VAR Pct = [Ecart % Nombre de vols N a date vs N-1 a date]
 			RETURN
 				IF(
-					ISBLANK(PreviousValue),
-					"Tendance non disponible",
+					ISBLANK(Prev),
+					"Comparaison N-1 a date non disponible",
 					IF(
-						Delta >= 0,
-						"Vert - hausse vs periode precedente: +" & FORMAT(Delta, "0.0%"),
-						"Rouge - baisse vs periode precedente: " & FORMAT(Delta, "0.0%")
+						ISBLANK(Pct),
+						"Comparaison N-1 a date non disponible",
+						IF(
+							Pct >= 0,
+							UNICHAR(128994) & " +" & FORMAT(Pct, "0.0%") & " vs N-1 a date",
+							UNICHAR(128308) & " " & FORMAT(Pct, "0.0%") & " vs N-1 a date"
+						)
 					)
 				)
 		lineageTag: 41000000-0000-0000-0000-000000000002
 
 	measure 'Signal capacite sieges' =
-			VAR CurrentValue = [Capacite sieges]
-			VAR PreviousValue =
-				CALCULATE([Capacite sieges], DATEADD('Dim_Date'[Date], -1, MONTH))
-			VAR Delta = DIVIDE(CurrentValue - PreviousValue, PreviousValue)
+			VAR Prev = [Capacite sieges N-1 a date]
+			VAR Pct = [Ecart % Capacite sieges N a date vs N-1 a date]
 			RETURN
 				IF(
-					ISBLANK(PreviousValue),
-					"Tendance non disponible",
+					ISBLANK(Prev),
+					"Comparaison N-1 a date non disponible",
 					IF(
-						Delta >= 0,
-						"Vert - hausse vs periode precedente: +" & FORMAT(Delta, "0.0%"),
-						"Rouge - baisse vs periode precedente: " & FORMAT(Delta, "0.0%")
+						ISBLANK(Pct),
+						"Comparaison N-1 a date non disponible",
+						IF(
+							Pct >= 0,
+							UNICHAR(128994) & " +" & FORMAT(Pct, "0.0%") & " vs N-1 a date",
+							UNICHAR(128308) & " " & FORMAT(Pct, "0.0%") & " vs N-1 a date"
+						)
 					)
 				)
 		lineageTag: 41000000-0000-0000-0000-000000000003
 
 	measure 'Signal taux de remplissage' =
-			VAR CurrentValue = [Taux de remplissage]
-			VAR PreviousValue =
-				CALCULATE([Taux de remplissage], DATEADD('Dim_Date'[Date], -1, MONTH))
-			VAR Delta = DIVIDE(CurrentValue - PreviousValue, PreviousValue)
+			VAR Prev = [Taux de remplissage N-1 a date]
+			VAR Pct = [Ecart % Taux de remplissage N a date vs N-1 a date]
 			RETURN
 				IF(
-					ISBLANK(PreviousValue),
-					"Tendance non disponible",
+					ISBLANK(Prev),
+					"Comparaison N-1 a date non disponible",
 					IF(
-						Delta >= 0,
-						"Vert - hausse vs periode precedente: +" & FORMAT(Delta, "0.0%"),
-						"Rouge - baisse vs periode precedente: " & FORMAT(Delta, "0.0%")
+						ISBLANK(Pct),
+						"Comparaison N-1 a date non disponible",
+						IF(
+							Pct >= 0,
+							UNICHAR(128994) & " +" & FORMAT(Pct, "0.0%") & " vs N-1 a date",
+							UNICHAR(128308) & " " & FORMAT(Pct, "0.0%") & " vs N-1 a date"
+						)
 					)
 				)
 		lineageTag: 41000000-0000-0000-0000-000000000004
 
 	measure 'Signal flux passagers horaire' =
-			VAR CurrentValue = [Flux passagers horaire]
-			VAR PreviousValue =
-				CALCULATE([Flux passagers horaire], DATEADD('Dim_Date'[Date], -1, MONTH))
-			VAR Delta = DIVIDE(CurrentValue - PreviousValue, PreviousValue)
+			VAR Prev = [Flux passagers horaire N-1 a date]
+			VAR Pct = [Ecart % Flux passagers horaire N a date vs N-1 a date]
 			RETURN
 				IF(
-					ISBLANK(PreviousValue),
-					"Tendance non disponible",
+					ISBLANK(Prev),
+					"Comparaison N-1 a date non disponible",
 					IF(
-						Delta >= 0,
-						"Vert - hausse vs periode precedente: +" & FORMAT(Delta, "0.0%"),
-						"Rouge - baisse vs periode precedente: " & FORMAT(Delta, "0.0%")
+						ISBLANK(Pct),
+						"Comparaison N-1 a date non disponible",
+						IF(
+							Pct >= 0,
+							UNICHAR(128994) & " +" & FORMAT(Pct, "0.0%") & " vs N-1 a date",
+							UNICHAR(128308) & " " & FORMAT(Pct, "0.0%") & " vs N-1 a date"
+						)
 					)
 				)
 		lineageTag: 41000000-0000-0000-0000-000000000005
 
 	measure 'Signal retard moyen' =
-			VAR CurrentValue = [Retard moyen (min)]
-			VAR PreviousValue =
-				CALCULATE([Retard moyen (min)], DATEADD('Dim_Date'[Date], -1, MONTH))
-			VAR Delta = DIVIDE(CurrentValue - PreviousValue, PreviousValue)
+			VAR Prev = [Retard moyen (min) N-1 a date]
+			VAR Pct = [Ecart % Retard moyen (min) N a date vs N-1 a date]
 			RETURN
 				IF(
-					ISBLANK(PreviousValue),
-					"Tendance non disponible",
+					ISBLANK(Prev),
+					"Comparaison N-1 a date non disponible",
 					IF(
-						Delta <= 0,
-						"Vert - baisse vs periode precedente: " & FORMAT(Delta, "0.0%"),
-						"Rouge - hausse vs periode precedente: +" & FORMAT(Delta, "0.0%")
+						ISBLANK(Pct),
+						"Comparaison N-1 a date non disponible",
+						IF(
+							Pct >= 0,
+							UNICHAR(128994) & " +" & FORMAT(Pct, "0.0%") & " vs N-1 a date",
+							UNICHAR(128308) & " " & FORMAT(Pct, "0.0%") & " vs N-1 a date"
+						)
 					)
 				)
 		lineageTag: 41000000-0000-0000-0000-000000000006
 
 	measure 'Signal vols retardes' =
-			VAR CurrentValue = [Vols retardes]
-			VAR PreviousValue =
-				CALCULATE([Vols retardes], DATEADD('Dim_Date'[Date], -1, MONTH))
-			VAR Delta = DIVIDE(CurrentValue - PreviousValue, PreviousValue)
+			VAR Prev = [Vols retardes N-1 a date]
+			VAR Pct = [Ecart % Vols retardes N a date vs N-1 a date]
 			RETURN
 				IF(
-					ISBLANK(PreviousValue),
-					"Tendance non disponible",
+					ISBLANK(Prev),
+					"Comparaison N-1 a date non disponible",
 					IF(
-						Delta <= 0,
-						"Vert - baisse vs periode precedente: " & FORMAT(Delta, "0.0%"),
-						"Rouge - hausse vs periode precedente: +" & FORMAT(Delta, "0.0%")
+						ISBLANK(Pct),
+						"Comparaison N-1 a date non disponible",
+						IF(
+							Pct >= 0,
+							UNICHAR(128994) & " +" & FORMAT(Pct, "0.0%") & " vs N-1 a date",
+							UNICHAR(128308) & " " & FORMAT(Pct, "0.0%") & " vs N-1 a date"
+						)
 					)
 				)
 		lineageTag: 41000000-0000-0000-0000-000000000007
 
 	measure 'Signal taux vols retardes' =
-			VAR CurrentValue = [Taux vols retardes]
-			VAR PreviousValue =
-				CALCULATE([Taux vols retardes], DATEADD('Dim_Date'[Date], -1, MONTH))
-			VAR Delta = DIVIDE(CurrentValue - PreviousValue, PreviousValue)
+			VAR Prev = [Taux vols retardes N-1 a date]
+			VAR Pct = [Ecart % Taux vols retardes N a date vs N-1 a date]
 			RETURN
 				IF(
-					ISBLANK(PreviousValue),
-					"Tendance non disponible",
+					ISBLANK(Prev),
+					"Comparaison N-1 a date non disponible",
 					IF(
-						Delta <= 0,
-						"Vert - baisse vs periode precedente: " & FORMAT(Delta, "0.0%"),
-						"Rouge - hausse vs periode precedente: +" & FORMAT(Delta, "0.0%")
+						ISBLANK(Pct),
+						"Comparaison N-1 a date non disponible",
+						IF(
+							Pct >= 0,
+							UNICHAR(128994) & " +" & FORMAT(Pct, "0.0%") & " vs N-1 a date",
+							UNICHAR(128308) & " " & FORMAT(Pct, "0.0%") & " vs N-1 a date"
+						)
 					)
 				)
 		lineageTag: 41000000-0000-0000-0000-000000000008
 
 	measure 'Signal incidents' =
-			VAR CurrentValue = [Incidents]
-			VAR PreviousValue =
-				CALCULATE([Incidents], DATEADD('Dim_Date'[Date], -1, MONTH))
-			VAR Delta = DIVIDE(CurrentValue - PreviousValue, PreviousValue)
+			VAR Prev = [Incidents N-1 a date]
+			VAR Pct = [Ecart % Incidents N a date vs N-1 a date]
 			RETURN
 				IF(
-					ISBLANK(PreviousValue),
-					"Tendance non disponible",
+					ISBLANK(Prev),
+					"Comparaison N-1 a date non disponible",
 					IF(
-						Delta <= 0,
-						"Vert - baisse vs periode precedente: " & FORMAT(Delta, "0.0%"),
-						"Rouge - hausse vs periode precedente: +" & FORMAT(Delta, "0.0%")
+						ISBLANK(Pct),
+						"Comparaison N-1 a date non disponible",
+						IF(
+							Pct >= 0,
+							UNICHAR(128994) & " +" & FORMAT(Pct, "0.0%") & " vs N-1 a date",
+							UNICHAR(128308) & " " & FORMAT(Pct, "0.0%") & " vs N-1 a date"
+						)
 					)
 				)
 		lineageTag: 41000000-0000-0000-0000-000000000009
 
 	measure 'Signal passagers impactes' =
-			VAR CurrentValue = [Passagers impactes]
-			VAR PreviousValue =
-				CALCULATE([Passagers impactes], DATEADD('Dim_Date'[Date], -1, MONTH))
-			VAR Delta = DIVIDE(CurrentValue - PreviousValue, PreviousValue)
+			VAR Prev = [Passagers impactes N-1 a date]
+			VAR Pct = [Ecart % Passagers impactes N a date vs N-1 a date]
 			RETURN
 				IF(
-					ISBLANK(PreviousValue),
-					"Tendance non disponible",
+					ISBLANK(Prev),
+					"Comparaison N-1 a date non disponible",
 					IF(
-						Delta <= 0,
-						"Vert - baisse vs periode precedente: " & FORMAT(Delta, "0.0%"),
-						"Rouge - hausse vs periode precedente: +" & FORMAT(Delta, "0.0%")
+						ISBLANK(Pct),
+						"Comparaison N-1 a date non disponible",
+						IF(
+							Pct >= 0,
+							UNICHAR(128994) & " +" & FORMAT(Pct, "0.0%") & " vs N-1 a date",
+							UNICHAR(128308) & " " & FORMAT(Pct, "0.0%") & " vs N-1 a date"
+						)
 					)
 				)
 		lineageTag: 41000000-0000-0000-0000-000000000010
 
 	measure 'Signal attente moyenne' =
-			VAR CurrentValue = [Attente moyenne (min)]
-			VAR PreviousValue =
-				CALCULATE([Attente moyenne (min)], DATEADD('Dim_Date'[Date], -1, MONTH))
-			VAR Delta = DIVIDE(CurrentValue - PreviousValue, PreviousValue)
+			VAR Prev = [Attente moyenne (min) N-1 a date]
+			VAR Pct = [Ecart % Attente moyenne (min) N a date vs N-1 a date]
 			RETURN
 				IF(
-					ISBLANK(PreviousValue),
-					"Tendance non disponible",
+					ISBLANK(Prev),
+					"Comparaison N-1 a date non disponible",
 					IF(
-						Delta <= 0,
-						"Vert - baisse vs periode precedente: " & FORMAT(Delta, "0.0%"),
-						"Rouge - hausse vs periode precedente: +" & FORMAT(Delta, "0.0%")
+						ISBLANK(Pct),
+						"Comparaison N-1 a date non disponible",
+						IF(
+							Pct >= 0,
+							UNICHAR(128994) & " +" & FORMAT(Pct, "0.0%") & " vs N-1 a date",
+							UNICHAR(128308) & " " & FORMAT(Pct, "0.0%") & " vs N-1 a date"
+						)
 					)
 				)
 		lineageTag: 41000000-0000-0000-0000-000000000011
 
 	measure 'Signal taux bagages mal traites' =
-			VAR CurrentValue = [Taux bagages mal traites]
-			VAR PreviousValue =
-				CALCULATE([Taux bagages mal traites], DATEADD('Dim_Date'[Date], -1, MONTH))
-			VAR Delta = DIVIDE(CurrentValue - PreviousValue, PreviousValue)
+			VAR Prev = [Taux bagages mal traites N-1 a date]
+			VAR Pct = [Ecart % Taux bagages mal traites N a date vs N-1 a date]
 			RETURN
 				IF(
-					ISBLANK(PreviousValue),
-					"Tendance non disponible",
+					ISBLANK(Prev),
+					"Comparaison N-1 a date non disponible",
 					IF(
-						Delta <= 0,
-						"Vert - baisse vs periode precedente: " & FORMAT(Delta, "0.0%"),
-						"Rouge - hausse vs periode precedente: +" & FORMAT(Delta, "0.0%")
+						ISBLANK(Pct),
+						"Comparaison N-1 a date non disponible",
+						IF(
+							Pct >= 0,
+							UNICHAR(128994) & " +" & FORMAT(Pct, "0.0%") & " vs N-1 a date",
+							UNICHAR(128308) & " " & FORMAT(Pct, "0.0%") & " vs N-1 a date"
+						)
 					)
 				)
 		lineageTag: 41000000-0000-0000-0000-000000000012
@@ -713,6 +737,26 @@ table Fact_Flights
 			DIVIDE([Ecart Flux passagers horaire M vs M-1], [Flux passagers horaire M-1])
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: 0115a3ca-60f6-4599-8c1e-134dc5adc519
+
+	measure 'Flux passagers horaire N a date' =
+			CALCULATE([Flux passagers horaire], DATESYTD('Dim_Date'[Date]))
+		formatString: 0
+		lineageTag: c2a11a00-0000-4000-8000-000000000001
+
+	measure 'Flux passagers horaire N-1 a date' =
+			CALCULATE([Flux passagers horaire], SAMEPERIODLASTYEAR(DATESYTD('Dim_Date'[Date])))
+		formatString: 0
+		lineageTag: c2a11a00-0000-4000-8000-000000000002
+
+	measure 'Ecart Flux passagers horaire N a date vs N-1 a date' =
+			[Flux passagers horaire N a date] - [Flux passagers horaire N-1 a date]
+		formatString: 0
+		lineageTag: c2a11a00-0000-4000-8000-000000000003
+
+	measure 'Ecart % Flux passagers horaire N a date vs N-1 a date' =
+			DIVIDE([Ecart Flux passagers horaire N a date vs N-1 a date], [Flux passagers horaire N-1 a date])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: c2a11a00-0000-4000-8000-000000000004
 
 	measure 'Incidents N' =
 			CALCULATE([Incidents], YEAR('Dim_Date'[Date]) = YEAR(TODAY()))

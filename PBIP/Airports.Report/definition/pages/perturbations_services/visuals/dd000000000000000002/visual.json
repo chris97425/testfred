@@ -22,11 +22,11 @@
                       "Entity": "Fact_Flights"
                     }
                   },
-                  "Property": "Incidents"
+                  "Property": "Incidents N a date"
                 }
               },
-              "queryRef": "Fact_Flights.Incidents",
-              "nativeQueryRef": "Incidents"
+              "queryRef": "Fact_Flights.Incidents N a date",
+              "nativeQueryRef": "Incidents N a date"
             },
             {
               "field": {

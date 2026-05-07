@@ -22,11 +22,11 @@
                       "Entity": "Fact_Flights"
                     }
                   },
-                  "Property": "Nombre de vols"
+                  "Property": "Nombre de vols N a date"
                 }
               },
-              "queryRef": "Fact_Flights.Nombre de vols",
-              "nativeQueryRef": "Nombre de vols"
+              "queryRef": "Fact_Flights.Nombre de vols N a date",
+              "nativeQueryRef": "Nombre de vols N a date"
             },
             {
               "field": {

@@ -28,10 +28,10 @@ La premiere page ne doit contenir aucun tableau. Elle doit montrer les KPI essen
 ```mermaid
 flowchart TB
     A["Page : Vue ensemble activite"]
-    B["KPI : Total passagers N a date avec ecart vs N-1"]
-    C["KPI : Nombre de vols N a date avec ecart vs N-1"]
-    D["KPI : Taux de remplissage N a date avec signal"]
-    E["KPI : Taux vols retardes M avec signal rouge vert"]
+    B["KPI : Total passagers N a date + ecart % vs N-1 a date (vert si >= 0)"]
+    C["KPI : Nombre de vols N a date + ecart % vs N-1 a date"]
+    D["KPI : Taux de remplissage N a date + ecart % vs N-1 a date"]
+    E["KPI : Taux vols retardes (ex. M) + signal — autres pages : N a date vs N-1"]
     F["Courbe principale : Evolution mensuelle du trafic passagers"]
     G["Bar chart : Top compagnies ou routes contributrices"]
     H["Texte insight : hausse ou baisse de la periode selectionnee"]

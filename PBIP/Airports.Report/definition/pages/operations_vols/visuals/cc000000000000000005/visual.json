@@ -22,11 +22,11 @@
                       "Entity": "Fact_Flights"
                     }
                   },
-                  "Property": "Retard moyen (min)"
+                  "Property": "Retard moyen (min) N a date"
                 }
               },
-              "queryRef": "Fact_Flights.Retard moyen (min)",
-              "nativeQueryRef": "Retard moyen (min)"
+              "queryRef": "Fact_Flights.Retard moyen (min) N a date",
+              "nativeQueryRef": "Retard moyen (min) N a date"
             },
             {
               "field": {

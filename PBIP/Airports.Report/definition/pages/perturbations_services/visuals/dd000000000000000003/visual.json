@@ -22,11 +22,11 @@
                       "Entity": "Fact_Flights"
                     }
                   },
-                  "Property": "Passagers impactes"
+                  "Property": "Passagers impactes N a date"
                 }
               },
-              "queryRef": "Fact_Flights.Passagers impactes",
-              "nativeQueryRef": "Passagers impactes"
+              "queryRef": "Fact_Flights.Passagers impactes N a date",
+              "nativeQueryRef": "Passagers impactes N a date"
             },
             {
               "field": {

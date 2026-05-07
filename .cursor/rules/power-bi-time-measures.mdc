@@ -56,9 +56,16 @@ Pour une mesure principale `[Nom Mesure]`, proposer lorsque pertinent :
 
 Pour les cartes KPI et les analyses de performance annuelle, privilégier les variantes à date plutôt que les comparaisons d'année complète.
 
+## Obligation d’usage — cartes KPI / big numbers
+
+- **Toujours** prévoir dans le modèle (ou réutiliser) pour chaque indicateur temporalisable affiché en KPI : **`[Nom Mesure N à date]`**, **`[Nom Mesure N-1 à date]`**, **`[Écart % Nom Mesure N à date vs N-1 à date]`** — mêmes noms avec **`N a date`** si c’est la convention du fichier `.tmdl`.
+- **Toujours** lier dans `PBIP/**/visuals/**/visual.json` la **valeur principale** du KPI à **`… N à date` / `… N a date`**, **pas** à la mesure seule **`[Nom Mesure]`**.
+- **Toujours** lier la **ligne de comparaison** (ou la mesure **`Signal …`**) à l’**écart % N à date vs N-1 à date** : la mesure `Signal` doit **uniquement** calculer l’affichage à partir de **`[Écart % … N à date vs N-1 à date]`** (et du dénominateur N-1 à date pour les cas vides), **pas** à une tendance mois sur mois sauf **exception explicitement validée** dans le Markdown de cadrage.
+- Lors de la **création, modification ou audit** de rapport : parcourir les visuels de type carte / multi-row card et **corriger** toute dérogation avant de considérer la tâche terminée.
+
 ## Modèles DAX
 
-Utiliser `DimDate` comme table calendrier par défaut, sauf convention différente déjà présente dans le modèle.
+Utiliser `DimDate` comme table calendrier par défaut, sauf convention différente déjà présente dans le modèle (ex. `Dim_Date`).
 
 ```DAX
 Nom Mesure N = CALCULATE([Nom Mesure], YEAR('DimDate'[Date]) = YEAR(TODAY()))
@@ -81,4 +88,4 @@ Les mesures d'écart en pourcentage doivent être formatées en pourcentage dans
 
 Les déclinaisons temporelles doivent respecter la granularité de la mesure principale et de la page. Une page centrée sur les vols ne doit pas recevoir des mesures passagers, sauf si le lien métier est explicitement justifié dans le cadrage.
 
-Phrase de contrainte forte : toute mesure métier proposée dans un rapport Power BI doit être accompagnée de ses déclinaisons temporelles standards lorsque cela est pertinent : N, N-1, N à date, N-1 à date, M, M-1, écarts en valeur et écarts en pourcentage. Ces déclinaisons doivent être documentées dans le Markdown de cadrage et validées avant toute création.
+Phrase de contrainte forte : toute mesure métier proposée dans un rapport Power BI doit être accompagnée de ses déclinaisons temporelles standards lorsque cela est pertinent : N, N-1, N à date, N-1 à date, M, M-1, écarts en valeur et écarts en pourcentage. Ces déclinaisons doivent être documentées dans le Markdown de cadrage et validées avant toute création. **Pour tout indicateur utilisé en carte KPI**, les variantes **`N à date`**, **`N-1 à date`** et **`Écart % … N à date vs N-1 à date`** ne sont pas optionnelles : elles doivent exister dans le modèle et être **celles référencées par le rapport** (voir section « Obligation d’usage » ci-dessus).

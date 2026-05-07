@@ -22,11 +22,11 @@
                       "Entity": "Fact_Flights"
                     }
                   },
-                  "Property": "Vols retardes"
+                  "Property": "Vols retardes N a date"
                 }
               },
-              "queryRef": "Fact_Flights.Vols retardes",
-              "nativeQueryRef": "Vols retardes"
+              "queryRef": "Fact_Flights.Vols retardes N a date",
+              "nativeQueryRef": "Vols retardes N a date"
             },
             {
               "field": {

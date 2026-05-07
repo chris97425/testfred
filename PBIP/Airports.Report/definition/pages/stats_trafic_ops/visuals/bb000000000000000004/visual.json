@@ -22,11 +22,11 @@
                       "Entity": "Fact_Flights"
                     }
                   },
-                  "Property": "Capacite sieges"
+                  "Property": "Capacite sieges N a date"
                 }
               },
-              "queryRef": "Fact_Flights.Capacite sieges",
-              "nativeQueryRef": "Capacite sieges"
+              "queryRef": "Fact_Flights.Capacite sieges N a date",
+              "nativeQueryRef": "Capacite sieges N a date"
             },
             {
               "field": {

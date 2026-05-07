@@ -22,11 +22,11 @@
                       "Entity": "Fact_Flights"
                     }
                   },
-                  "Property": "Taux de remplissage"
+                  "Property": "Taux de remplissage N a date"
                 }
               },
-              "queryRef": "Fact_Flights.Taux de remplissage",
-              "nativeQueryRef": "Taux de remplissage"
+              "queryRef": "Fact_Flights.Taux de remplissage N a date",
+              "nativeQueryRef": "Taux de remplissage N a date"
             },
             {
               "field": {

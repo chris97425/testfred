@@ -46,7 +46,9 @@ flowchart TB
 
 ### 4. Mesures DAX à créer
 
-Pour chaque mesure : nom, formule DAX proposée, table d’hébergement, raison métier, pertinence pour la page, niveau de granularité attendu.
+Pour chaque mesure : nom, formule DAX proposée, table d’hébergement, raison métier, pertinence pour la page, niveau de granularité attendu.
+
+Pour **chaque indicateur prévu en carte KPI** : le cadrage doit **inclure explicitement** les mesures **`… N à date`**, **`… N-1 à date`** et **`Écart % … N à date vs N-1 à date`** (aligné sur `power-bi-time-measures.mdc`) — sans ce trio, ne pas valider la construction des cartes correspondantes.
 
 ### 5. Graphiques à créer
 
@@ -95,6 +97,7 @@ When editing Power BI PBIP files, preserve model consistency before changing rep
 - Keep measure names stable when visuals already reference them. Rename only when all references in report JSON and TMDL files are updated together.
 - Prefer adding or editing measures in the semantic model `.tmdl` table where the related fact data lives.
 - When editing report `.json` files, validate that every referenced measure exists exactly once in the semantic model.
+- **Cartes KPI (`multiRowCard`, carte / `cardVisual`, etc.)** : la valeur principale doit référencer **`… N à date`** ou **`… N a date`** ; la tendance doit s’appuyer sur **`Écart % … N à date vs N-1 à date`** ou une **`Signal …`** conforme à `power-bi-storytelling.mdc` et `power-bi-time-measures.mdc`. Ne pas laisser une mesure brute seule sur la carte si le duo YTD / écart % existe ou doit exister — **mettre à jour le `.tmdl` et le `visual.json` ensemble**.
 
 Example check before creating a measure:
 

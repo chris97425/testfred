@@ -22,11 +22,11 @@
                       "Entity": "Fact_Flights"
                     }
                   },
-                  "Property": "Flux passagers horaire"
+                  "Property": "Flux passagers horaire N a date"
                 }
               },
-              "queryRef": "Fact_Flights.Flux passagers horaire",
-              "nativeQueryRef": "Flux passagers horaire"
+              "queryRef": "Fact_Flights.Flux passagers horaire N a date",
+              "nativeQueryRef": "Flux passagers horaire N a date"
             },
             {
               "field": {

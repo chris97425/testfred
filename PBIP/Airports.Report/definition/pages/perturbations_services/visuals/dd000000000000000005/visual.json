@@ -22,11 +22,11 @@
                       "Entity": "Fact_Flights"
                     }
                   },
-                  "Property": "Taux bagages mal traites"
+                  "Property": "Taux bagages mal traites N a date"
                 }
               },
-              "queryRef": "Fact_Flights.Taux bagages mal traites",
-              "nativeQueryRef": "Taux bagages mal traites"
+              "queryRef": "Fact_Flights.Taux bagages mal traites N a date",
+              "nativeQueryRef": "Taux bagages mal traites N a date"
             },
             {
               "field": {

@@ -22,11 +22,11 @@
                       "Entity": "Fact_Flights"
                     }
                   },
-                  "Property": "Taux vols retardes"
+                  "Property": "Taux vols retardes N a date"
                 }
               },
-              "queryRef": "Fact_Flights.Taux vols retardes",
-              "nativeQueryRef": "Taux vols retardes"
+              "queryRef": "Fact_Flights.Taux vols retardes N a date",
+              "nativeQueryRef": "Taux vols retardes N a date"
             },
             {
               "field": {
