@@ -1,9 +1,89 @@
 ---
-description: Safeguards for Power BI PBIP model, report edits, and Python-related report work
+description: Cadrage Markdown obligatoire avant construction PBI, garde-fous PBIP/TMDL, visuels Python
 globs:
-  - PBIP/**/*.{tmdl,json}
+  - PBIP/**/*.{tmdl,json,md}
   - "**/script-python*.txt"
 alwaysApply: false
+---
+
+# Règle obligatoire — Plan Markdown avant toute construction de rapport Power BI
+
+Pour toute demande de **création** d’un nouveau rapport Power BI, d’une **nouvelle page**, ou de **modification structurelle importante** d’un rapport existant, ne pas commencer directement la construction (pas de mesures, graphiques, relations, pages ni visuels dans les fichiers PBIP tant que le cadrage n’est pas validé).
+
+**Aucune construction de rapport, page, mesure, relation ou graphique ne doit être réalisée avant validation explicite du fichier Markdown de cadrage par l’utilisateur.**
+
+## Avant toute implémentation
+
+Générer obligatoirement un **fichier Markdown de cadrage** (p. ex. sous `PBIP/<Projet>/docs/cadrage-<sujet>.md` ou emplacement cohérent avec le projet) décrivant précisément ce qui est proposé. Ce fichier doit contenir :
+
+### 1. Périmètre du rapport ou de la page
+
+- Objectif métier de la page ou du rapport.
+- Question principale à laquelle la page doit répondre.
+- Utilisateurs ou décideurs ciblés si l’information est disponible.
+
+### 2. Structure proposée du rapport
+
+- Liste des pages proposées.
+- Rôle de chaque page dans la narration globale.
+- Ordre logique des pages pour une histoire cohérente.
+
+### 3. Schéma Mermaid pour chaque page
+
+Chaque page proposée doit être représentée visuellement avec un schéma Mermaid montrant les principaux blocs : KPIs, graphiques, tableaux, filtres, zones de commentaire ou d’explication — pour visualiser la disposition avant construction.
+
+Exemple attendu :
+
+```mermaid
+flowchart TB
+    A[Page : Vue globale des vols]
+    A --> B[KPI : Nombre total de vols]
+    A --> C[KPI : Taux de ponctualité]
+    A --> D[Graphique : Évolution du nombre de vols par mois]
+    A --> E[Graphique : Répartition des vols par compagnie]
+    A --> F[Tableau : Top routes les plus fréquentes]
+```
+
+### 4. Mesures DAX à créer
+
+Pour chaque mesure : nom, formule DAX proposée, table d’hébergement, raison métier, pertinence pour la page, niveau de granularité attendu.
+
+### 5. Graphiques à créer
+
+Pour chaque graphique : type, mesure(s), axe principal, axe secondaire si besoin, filtres appliqués, granularité, pertinence, ce qu’il doit permettre de comprendre.
+
+### 6. Relations ou ajustements du modèle
+
+Si une relation est créée ou modifiée : tables/colonnes source et cible, cardinalité, sens de filtrage recommandé, nécessité métier, risque pour le modèle existant.
+
+### 7. Cohérence de granularité
+
+Chaque page = un niveau d’analyse clair. Ne pas mélanger des indicateurs qui ne racontent pas la même histoire (ex. vols vs passagers) sans justification métier explicite ; sinon page dédiée ou section clairement séparée.
+
+### 8. Narration du rapport
+
+Le rapport n’est pas une accumulation de graphiques. Chaque page = une étape (vue globale, tendances, écarts, décomposition, anomalies, synthèse/recommandations). Chaque visuel doit avoir une raison d’exister dans cette narration.
+
+### 9. Validation obligatoire avant construction
+
+Après génération du Markdown, **s’arrêter**. Ne pas créer mesures, graphiques, relations, pages ou visuels tant que l’utilisateur n’a pas **explicitement validé** le plan. Avant validation, seules des **révisions du fichier de cadrage** sont permises.
+
+Phrases de validation acceptées (exemples) : « Je valide », « OK tu peux construire », « Tu peux commencer », « Lance la création », « Le plan est bon ».
+
+### 10. Déclenchement de la construction
+
+Une fois le plan validé, appliquer le plan **étape par étape** dans les artefacts PBIP.
+
+## Comportement attendu de l’agent
+
+1. Ne construis rien immédiatement pour un nouveau rapport, une nouvelle page ou une refonte majeure.
+2. Génère d’abord un fichier Markdown de cadrage.
+3. Représente chaque page avec un schéma Mermaid.
+4. Justifie chaque mesure, graphique, relation et élément de page.
+5. Vérifie la cohérence de granularité par page.
+6. Attends la validation explicite de l’utilisateur.
+7. Ne commence la construction qu’après validation.
+
 ---
 
 # Power BI PBIP Safeguards

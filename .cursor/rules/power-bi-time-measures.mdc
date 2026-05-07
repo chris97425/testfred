@@ -1,0 +1,84 @@
+---
+description: Power BI time intelligence measure variants and validation workflow
+globs:
+  - PBIP/**/*.tmdl
+  - PBIP/**/*.json
+  - "**/*.md"
+alwaysApply: false
+---
+
+# Power BI — Déclinaisons Temporelles des Mesures
+
+Quand une mesure métier Power BI est proposée, créée ou modifiée, analyser systématiquement si elle représente un fait analysable dans le temps : ventes, chiffre d'affaires, vols, passagers, commandes, montants, volumes, durées, incidents, tickets, etc.
+
+## Workflow Obligatoire
+
+- Identifier la mesure principale et sa granularité métier.
+- Vérifier si elle est temporellement analysable.
+- Vérifier l'existence d'une table calendrier avant toute proposition DAX.
+- Lister les déclinaisons temporelles dans le Markdown de cadrage du rapport.
+- Justifier chaque déclinaison : formule DAX, rôle métier, niveau temporel, intérêt dans le rapport et visuels ciblés.
+- Attendre une validation explicite de l'utilisateur avant de créer ou modifier les mesures dans Power BI.
+
+Ne jamais créer directement les déclinaisons DAX sans validation préalable du fichier Markdown de cadrage.
+
+## Pré-Requis Calendrier
+
+Avant de proposer les déclinaisons, vérifier qu'une table calendrier existe avec au minimum :
+
+- une colonne de date continue ;
+- une colonne année ;
+- une colonne mois ;
+- une colonne numéro de mois ;
+- une colonne année-mois ;
+- une colonne permettant d'identifier le mois courant si nécessaire ;
+- une relation active entre la table calendrier et la table de faits concernée.
+
+Si elle n'existe pas, proposer d'abord sa création dans le Markdown de cadrage.
+
+## Famille de Mesures Standard
+
+Pour une mesure principale `[Nom Mesure]`, proposer lorsque pertinent :
+
+- `[Nom Mesure]`
+- `[Nom Mesure N]`
+- `[Nom Mesure N-1]`
+- `[Nom Mesure N à date]`
+- `[Nom Mesure N-1 à date]`
+- `[Écart Nom Mesure N vs N-1]`
+- `[Écart % Nom Mesure N vs N-1]`
+- `[Écart Nom Mesure N à date vs N-1 à date]`
+- `[Écart % Nom Mesure N à date vs N-1 à date]`
+- `[Nom Mesure M]`
+- `[Nom Mesure M-1]`
+- `[Écart Nom Mesure M vs M-1]`
+- `[Écart % Nom Mesure M vs M-1]`
+
+Pour les cartes KPI et les analyses de performance annuelle, privilégier les variantes à date plutôt que les comparaisons d'année complète.
+
+## Modèles DAX
+
+Utiliser `DimDate` comme table calendrier par défaut, sauf convention différente déjà présente dans le modèle.
+
+```DAX
+Nom Mesure N = CALCULATE([Nom Mesure], YEAR('DimDate'[Date]) = YEAR(TODAY()))
+Nom Mesure N-1 = CALCULATE([Nom Mesure], SAMEPERIODLASTYEAR('DimDate'[Date]))
+Nom Mesure N à date = CALCULATE([Nom Mesure], DATESYTD('DimDate'[Date]))
+Nom Mesure N-1 à date = CALCULATE([Nom Mesure], SAMEPERIODLASTYEAR(DATESYTD('DimDate'[Date])))
+Écart Nom Mesure N vs N-1 = [Nom Mesure N] - [Nom Mesure N-1]
+Écart % Nom Mesure N vs N-1 = DIVIDE([Écart Nom Mesure N vs N-1], [Nom Mesure N-1])
+Écart Nom Mesure N à date vs N-1 à date = [Nom Mesure N à date] - [Nom Mesure N-1 à date]
+Écart % Nom Mesure N à date vs N-1 à date = DIVIDE([Écart Nom Mesure N à date vs N-1 à date], [Nom Mesure N-1 à date])
+Nom Mesure M = CALCULATE([Nom Mesure], YEAR('DimDate'[Date]) = YEAR(TODAY()), MONTH('DimDate'[Date]) = MONTH(TODAY()))
+Nom Mesure M-1 = CALCULATE([Nom Mesure], PREVIOUSMONTH('DimDate'[Date]))
+Écart Nom Mesure M vs M-1 = [Nom Mesure M] - [Nom Mesure M-1]
+Écart % Nom Mesure M vs M-1 = DIVIDE([Écart Nom Mesure M vs M-1], [Nom Mesure M-1])
+```
+
+Les mesures d'écart en pourcentage doivent être formatées en pourcentage dans Power BI.
+
+## Granularité Métier
+
+Les déclinaisons temporelles doivent respecter la granularité de la mesure principale et de la page. Une page centrée sur les vols ne doit pas recevoir des mesures passagers, sauf si le lien métier est explicitement justifié dans le cadrage.
+
+Phrase de contrainte forte : toute mesure métier proposée dans un rapport Power BI doit être accompagnée de ses déclinaisons temporelles standards lorsque cela est pertinent : N, N-1, N à date, N-1 à date, M, M-1, écarts en valeur et écarts en pourcentage. Ces déclinaisons doivent être documentées dans le Markdown de cadrage et validées avant toute création.

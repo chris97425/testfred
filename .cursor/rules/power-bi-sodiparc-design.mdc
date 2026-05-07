@@ -1,0 +1,35 @@
+---
+description: Design system Sodiparc pour rapports Power BI PBIP
+globs:
+  - PBIP/**/*.json
+  - PBIP/**/*.pbir
+  - PBIP/**/*.md
+alwaysApply: false
+---
+
+# Power BI — Design Sodiparc
+
+Pour tout rapport Power BI PBIP de ce projet, appliquer le thème `Template_Sodiparc_JSON` quand un design Sodiparc est demandé.
+
+## Source de vérité
+
+- Thème Power BI : `PBIP/Airports.Report/StaticResources/SharedResources/BaseThemes/Template_Sodiparc_JSON.json`
+- Nom de thème : `Template_Sodiparc_JSON`
+- Palette principale : bleu `#006DAA`, cyan `#00A2D5`, gris `#4C4C4C`, violet `#8C0B9D`, vert `#57B35C`, orange `#F58B18`, rouge `#DC3E3E`.
+- Typographie : `Segoe UI` et `Segoe UI Semibold`.
+
+## Règles d'application
+
+- Brancher le thème dans `definition/report.json` via `themeCollection.baseTheme.name`.
+- Conserver des pages `Widescreen`, fond page `#F5F5F5`, cartes et visuels en fond blanc.
+- Utiliser bordures `#cbd5e1`, radius 6 par défaut, padding 16 sur les visuels analytiques.
+- Centrer les titres de graphiques et garder les libellés à 9 px pour éviter la surcharge.
+- Positionner les légendes en haut et utiliser des axes sans titre quand le contexte du visuel est explicite.
+- KPI : valeur en `#0f172a`, libellé en `#64748b`, tendance rouge/verte selon le sens métier.
+- Tableaux : en-têtes centrés, `Segoe UI Semibold`, fond d'en-tête basé sur la couleur de thème 2, totaux contrastés.
+
+## Garde-fous
+
+- Ne pas revenir vers `VercelDark` ou `CY26SU02` pour un rapport marqué Sodiparc.
+- Ne pas disperser les styles directement dans chaque `visual.json` si le thème peut les porter.
+- Garder les styles spécifiques uniquement pour les titres métier, positions, ou exceptions analytiques justifiées.

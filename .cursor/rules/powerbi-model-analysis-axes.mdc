@@ -1,0 +1,257 @@
+---
+description: Cartographie des axes d'analyse d'un modele Power BI avant creation de rapport
+globs:
+  - PBIP/**/*.{tmdl,json,md,pbism}
+alwaysApply: false
+---
+
+# Rule - Cartographie des axes d'analyse du modele Power BI
+
+## Objectif
+
+Lorsque l'utilisateur demande une analyse d'un modele Power BI, identifier automatiquement les axes par lesquels les donnees peuvent etre decoupees avant toute proposition de rapport ou de page.
+
+La cartographie doit s'appuyer sur toutes les tables disponibles du modele et distinguer clairement :
+
+- les tables de faits ;
+- les tables de dimensions ;
+- les tables calendaires ;
+- les tables de pont ou de mapping ;
+- les tables techniques ou de parametres.
+
+L'objectif est de produire une cartographie lisible de l'infrastructure du modele : tables disponibles, relations, axes d'analyse, hierarchies naturelles, croisements analytiques pertinents, limites et incoherences potentielles.
+
+## Declenchement
+
+Appliquer cette regle lorsque l'utilisateur formule une demande proche de :
+
+- "analyse le modele" ;
+- "determine les axes d'analyse" ;
+- "montre-moi les dimensions" ;
+- "sur quels axes je peux decouper les donnees" ;
+- "cartographie le modele" ;
+- "presente-moi l'infrastructure du modele" ;
+- "genere un schema Mermaid du modele" ;
+- "quelles analyses sont possibles avec ces tables" ;
+- "quelles pages Power BI peut-on construire avec ce modele".
+
+## Comportement obligatoire
+
+Avant toute proposition de rapport ou de page Power BI :
+
+1. Lire toutes les tables disponibles dans le modele.
+2. Classer les tables : faits, dimensions, calendriers, ponts/mapping, techniques/parametres.
+3. Identifier les cles de relation, colonnes de decoupage, hierarchies possibles et axes metier exploitables.
+4. Determiner le grain de chaque table de faits.
+5. Proposer uniquement les croisements analytiques dont les relations sont fiables ou explicitement modelees.
+6. Signaler les zones d'ambiguite, dimensions absentes et risques de mauvaise granularite.
+7. Generer uniquement un fichier Markdown de cadrage.
+8. Attendre une validation explicite de l'utilisateur avant toute construction de rapport, page, mesure, relation ou visuel.
+
+Validations explicites acceptees : "Je valide", "OK tu peux construire", "Tu peux commencer", "Le plan est bon", "Lance la creation".
+
+## Classification des tables
+
+### Tables de faits
+
+Une table est probablement une table de faits si elle contient des evenements, transactions, lignes d'activite, montants, volumes, quantites, durees, statuts evenementiels, dates d'evenement ou identifiants vers plusieurs dimensions.
+
+Exemples : `FactSales`, `FactOrders`, `FactFlights`, `FactTickets`, `FactInterventions`, `FactPayments`, `FactTransactions`.
+
+### Tables de dimensions
+
+Une table est probablement une dimension si elle contient des libelles, categories, attributs descriptifs, hierarchies, informations de contexte ou donnees relativement stables.
+
+Exemples : `DimCustomer`, `DimProduct`, `DimDate`, `DimAirport`, `DimCompany`, `DimGeography`, `DimEmployee`, `DimService`.
+
+### Tables calendaires
+
+Une table est probablement calendaire si elle contient une date, annee, trimestre, mois, semaine, jour, mois/annee ou des indicateurs YTD, MTD, QTD, periode courante.
+
+### Tables de pont ou mapping
+
+Une table est probablement une table de pont si elle gere une relation many-to-many, une association entre deux dimensions, une correspondance entre deux referentiels ou une table de mapping.
+
+Exemples : `BridgeCustomerSegment`, `MappingProductCategory`, `FactlessUserRole`.
+
+### Tables techniques ou parametres
+
+Classer comme technique ou parametre les tables qui servent a piloter des slicers, des champs de parametres, des ordres d'affichage, des configurations ou des calculs, sans representer directement un axe metier stable.
+
+## Axes d'analyse
+
+Pour chaque table de dimension, identifier les axes possibles. Un axe d'analyse est une colonne ou un groupe de colonnes permettant de decouper une mesure.
+
+Axes typiques :
+
+- Temps ;
+- Geographie ;
+- Client ;
+- Produit ;
+- Service ;
+- Statut ;
+- Canal ;
+- Agence ;
+- Compagnie ;
+- Type d'operation ;
+- Categorie ;
+- Segment ;
+- Utilisateur ;
+- Organisation.
+
+Pour chaque axe, preciser : table source, colonnes disponibles, niveau de granularite, hierarchie possible, tables de faits reliees, mesures decoupables par cet axe et limites eventuelles.
+
+## Hierarchies naturelles a rechercher
+
+Exemples de hierarchies :
+
+- Temps : Annee > Trimestre > Mois > Semaine > Jour.
+- Geographie : Pays > Region > Departement > Commune > Site.
+- Produit : Famille > Categorie > Sous-categorie > Produit.
+- Client : Segment > Type de client > Client.
+- Organisation : Direction > Service > Equipe > Collaborateur.
+- Transport aerien : Pays > Aeroport > Route > Vol.
+
+## Format Markdown obligatoire
+
+Produire un fichier Markdown de cadrage contenant au minimum :
+
+```markdown
+# Cartographie analytique du modele Power BI
+## 1. Vue d'ensemble du modele
+## 2. Tables de faits identifiees
+## 3. Tables de dimensions identifiees
+## 4. Tables calendaires identifiees
+## 5. Tables de pont ou mapping identifiees
+## 6. Schema Mermaid global du modele
+## 7. Axes d'analyse disponibles
+## 8. Hierarchies analytiques
+## 9. Croisements analytiques possibles
+## 10. Risques de granularite
+## 11. Dimensions manquantes ou ameliorations possibles
+## 12. Opportunites de pages de rapport
+```
+
+## Schemas Mermaid obligatoires
+
+Inclure un schema Mermaid global montrant les relations entre tables de faits et dimensions.
+
+```mermaid
+flowchart LR
+    FactVols[FactVols]
+    DimDate[DimDate]
+    DimAeroport[DimAeroport]
+    DimCompagnie[DimCompagnie]
+    DimDate --> FactVols
+    DimAeroport --> FactVols
+    DimCompagnie --> FactVols
+```
+
+Si le modele est volumineux, creer plusieurs schemas : global simplifie, par table de faits, ou par domaine metier.
+
+Inclure aussi une representation hierarchique des axes :
+
+```mermaid
+mindmap
+  root((Axes d'analyse disponibles))
+    Temps
+      Annee
+      Trimestre
+      Mois
+      Jour
+    Geographie
+      Pays
+      Region
+      Site
+    Vols
+      Compagnie
+      Route
+      Aeroport de depart
+      Aeroport d'arrivee
+      Statut du vol
+```
+
+## Analyse obligatoire par table de faits
+
+Pour chaque table de faits, produire une section dediee :
+
+```markdown
+## Table de faits : FactVols
+### Grain de la table
+Une ligne semble representer : un vol.
+
+### Mesures potentielles
+- Nombre de vols
+- Duree moyenne des vols
+- Nombre de vols annules
+- Taux de ponctualite
+
+### Dimensions reliees
+| Dimension | Cle de relation | Axe d'analyse | Pertinence |
+|---|---|---|---|
+| DimDate | date_id | Temps | Analyse temporelle des vols |
+| DimCompagnie | compagnie_id | Compagnie | Comparer les volumes par compagnie |
+
+### Axes possibles
+- Temps
+- Compagnie
+- Route
+- Aeroport
+- Statut
+
+### Risques de granularite
+Ne pas melanger cette table directement avec des mesures passagers si la table passagers possede un grain different.
+```
+
+## Croisements analytiques
+
+Proposer les croisements pertinents entre mesures et dimensions au format :
+
+```markdown
+| Mesure | Axe de decoupage | Exemple d'analyse | Pertinence |
+|---|---|---|---|
+| Nombre de vols | Mois | Evolution mensuelle du trafic | Suivre la saisonnalite |
+| Nombre de vols | Compagnie | Repartition par compagnie | Identifier les compagnies dominantes |
+```
+
+Chaque croisement doit etre justifie. Il est interdit de proposer un croisement si la relation entre la mesure et la dimension n'est pas fiable ou n'existe pas clairement.
+
+## Regle de granularite
+
+Pour chaque table de faits, identifier son grain : une commande, un vol, un passager sur un vol, un paiement, un ticket, une intervention, etc.
+
+Verifier ensuite que les axes proposes respectent ce grain. Exemple : si `FactVols` contient une ligne par vol, ses mesures peuvent etre decoupees par date du vol, compagnie, route, aeroport ou statut. Elles ne doivent pas etre melangees directement avec des dimensions passager sans relation explicite ou table de faits au grain passager-vol.
+
+Exemple interdit : "Nombre de vols par age passager", sauf si une table de liaison fiable ou une table de faits au grain passager-vol existe.
+
+## Detection des ambiguites
+
+Signaler explicitement les points d'attention :
+
+- plusieurs chemins relationnels entre deux tables ;
+- relation many-to-many non maitrisee ;
+- table de faits sans dimension date ;
+- dimension non reliee ;
+- colonne de cle absente ;
+- doublons potentiels dans une dimension ;
+- melange entre table de faits et table de dimension ;
+- absence de table calendrier ;
+- relation inactive ;
+- sens de filtrage ambigu ;
+- mesures issues de tables de faits a grains differents.
+
+## Opportunites de pages de rapport
+
+A partir des axes identifies, proposer des pages possibles, sans les construire.
+
+Pour chaque page, preciser :
+
+- nom de la page ;
+- objectif metier ;
+- table de faits principale ;
+- mesures principales ;
+- axes de decoupage ;
+- niveau de granularite ;
+- limites a respecter.
+
+Contrainte forte : avant toute creation de rapport Power BI, cartographier les axes d'analyse disponibles a partir des tables de faits et de dimensions existantes. Cette cartographie doit etre presentee dans un fichier Markdown avec schemas Mermaid, puis validee par l'utilisateur avant toute construction.
