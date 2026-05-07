@@ -3,13 +3,13 @@
   "name": "cc000000000000000005",
   "position": {
     "x": 920,
-    "y": 70,
+    "y": 65,
     "z": 4,
-    "height": 110,
+    "height": 120,
     "width": 280
   },
   "visual": {
-    "visualType": "card",
+    "visualType": "multiRowCard",
     "query": {
       "queryState": {
         "Values": {
@@ -27,6 +27,20 @@
               },
               "queryRef": "Fact_Flights.Retard moyen (min)",
               "nativeQueryRef": "Retard moyen (min)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Flights"
+                    }
+                  },
+                  "Property": "Signal retard moyen"
+                }
+              },
+              "queryRef": "Fact_Flights.Signal retard moyen",
+              "nativeQueryRef": "Signal retard moyen"
             }
           ]
         }

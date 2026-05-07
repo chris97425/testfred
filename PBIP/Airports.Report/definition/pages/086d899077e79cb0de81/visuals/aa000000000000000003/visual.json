@@ -2,14 +2,14 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
   "name": "aa000000000000000003",
   "position": {
-    "x": 260,
-    "y": 70,
+    "x": 320,
+    "y": 65,
     "z": 2,
-    "height": 110,
-    "width": 220
+    "height": 120,
+    "width": 280
   },
   "visual": {
-    "visualType": "card",
+    "visualType": "multiRowCard",
     "query": {
       "queryState": {
         "Values": {
@@ -27,6 +27,20 @@
               },
               "queryRef": "Fact_Flights.Nombre de vols",
               "nativeQueryRef": "Nombre de vols"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Flights"
+                    }
+                  },
+                  "Property": "Signal nombre de vols"
+                }
+              },
+              "queryRef": "Fact_Flights.Signal nombre de vols",
+              "nativeQueryRef": "Signal nombre de vols"
             }
           ]
         }

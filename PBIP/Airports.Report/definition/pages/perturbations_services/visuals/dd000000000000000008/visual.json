@@ -3,9 +3,9 @@
   "name": "dd000000000000000008",
   "position": {
     "x": 800,
-    "y": 205,
+    "y": 220,
     "z": 12,
-    "height": 245,
+    "height": 240,
     "width": 400
   },
   "visual": {
@@ -82,7 +82,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Attente moyenne dans le temps'"
+                  "Value": "'Attente moyenne dans le temps - signal dans le KPI'"
                 }
               }
             },

@@ -3,9 +3,9 @@
   "name": "dd000000000000000007",
   "position": {
     "x": 410,
-    "y": 205,
+    "y": 220,
     "z": 11,
-    "height": 245,
+    "height": 240,
     "width": 360
   },
   "visual": {
@@ -82,7 +82,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Passagers impactés dans le temps'"
+                  "Value": "'Passagers impactés dans le temps - signal dans le KPI'"
                 }
               }
             },

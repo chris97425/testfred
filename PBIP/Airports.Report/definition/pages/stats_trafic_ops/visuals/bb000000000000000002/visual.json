@@ -3,13 +3,13 @@
   "name": "bb000000000000000002",
   "position": {
     "x": 20,
-    "y": 70,
+    "y": 65,
     "z": 1,
-    "height": 110,
+    "height": 120,
     "width": 280
   },
   "visual": {
-    "visualType": "card",
+    "visualType": "multiRowCard",
     "query": {
       "queryState": {
         "Values": {
@@ -27,6 +27,20 @@
               },
               "queryRef": "Fact_Flights.Total passagers",
               "nativeQueryRef": "Total passagers"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Flights"
+                    }
+                  },
+                  "Property": "Signal total passagers"
+                }
+              },
+              "queryRef": "Fact_Flights.Signal total passagers",
+              "nativeQueryRef": "Signal total passagers"
             }
           ]
         }

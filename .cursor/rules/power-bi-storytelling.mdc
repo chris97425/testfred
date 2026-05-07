@@ -21,12 +21,38 @@ Elle doit montrer uniquement ce qui aide à comprendre une partie précise de l�
 - Clarifier l’intention métier du rapport avant de proposer des pages, KPI ou visuels.
 - Ne jamais créer une page fourre-tout avec des sujets hétérogènes. Découper en pages distinctes quand les questions métier diffèrent.
 - Donner à chaque page un thème principal, un titre explicite et une granularité dominante : vols, passagers, revenus, retards, satisfaction, géographie, etc.
+- Exploiter intelligemment tout l’espace disponible : chaque visuel doit avoir une taille proportionnée à son importance analytique, avec peu de vide gratuit et sans compression inutile.
 - Ne pas mélanger des métriques de granularités différentes dans une même page sans justification claire.
 - Distinguer l’indicateur mesuré de l’axe d’analyse. Ne transforme pas tous les champs disponibles en graphiques.
 - Donner à chaque graphique un nom significatif en français, orienté métier, sans reprendre tel quel le nom d’une mesure. Utiliser le nom technique d’une mesure uniquement comme base de traduction quand il n’est pas déjà en français.
 - Organiser chaque page avec une hiérarchie lisible : KPI principaux, évolution temporelle, segmentation, détail, puis explication/tableau si nécessaire.
+- Ne jamais placer de tableau sur la première page d’un rapport. La première page doit être attractive, synthétique et orientée compréhension immédiate.
+- Pour chaque big number / card KPI, ajouter systématiquement une tendance rouge ou verte par rapport à la période précédente.
+- Pour chaque line plot, ajouter systématiquement un élément visuel ou textuel qui indique si la période sélectionnée est en hausse ou en baisse.
 - Justifier chaque visuel proposé : objectif métier, indicateur, axes utilisés, granularité, page cible et raison de placement.
 - Privilégier `clarté > exhaustivité`, `storytelling > accumulation`, `cohérence métier > démonstration technique`, `granularité homogène > mélange d’indicateurs`, `décision utilisateur > affichage de données`.
+
+## Mise en page et occupation de l'espace
+
+- Dimensionner les visuels selon leur rôle : un graphique de comparaison principal, comme un bar chart vertical, doit occuper assez de largeur et de hauteur pour lire toutes les catégories et exploiter la zone disponible.
+- Éviter les petits graphiques isolés dans de grands conteneurs vides. Agrandir le visuel, réduire les marges ou redistribuer la page.
+- Prioriser une grille simple : bandeau de titre, rangée KPI, zone centrale pour le ou les graphiques majeurs, zone secondaire pour segmentation ou contexte.
+- Si un graphique porte l’analyse principale de la page, il doit être visuellement dominant. Les slicers, textes et légendes ne doivent pas lui voler l’espace.
+- Avant de finaliser une page, vérifier qu’aucune zone importante n’est vide sans intention de design claire.
+
+## Première page du rapport
+
+- La première page doit donner envie d’explorer : titre fort, KPI essentiels, tendance globale, un visuel principal parlant et éventuellement une courte phrase d’insight.
+- Interdire les tableaux, matrices et listes détaillées sur cette page. Les détails tabulaires vont dans une page dédiée d’exploration ou d’annexe.
+- Privilégier les visuels synthétiques : cards avec tendance, courbe d’évolution, bar chart de top contributeurs, carte ou segmentation simple selon le sujet.
+- La première page doit raconter le sens du rapport : ce qui se passe, si cela s’améliore ou se dégrade, et où l’utilisateur doit regarder ensuite.
+
+## Tendances et signaux visuels
+
+- Big numbers : afficher la valeur actuelle, l’écart vs période précédente, le pourcentage d’évolution et une couleur sémantique. Vert = amélioration métier, rouge = dégradation métier ; ne pas supposer que hausse = positif sans comprendre l’indicateur.
+- Line plots : ajouter un indicateur de tendance visible sur la période filtrée, par exemple badge `En hausse` / `En baisse`, flèche, annotation de fin de courbe ou KPI adjacent.
+- Les couleurs de tendance doivent suivre le sens métier : baisse des retards = vert, hausse des retards = rouge ; hausse du trafic = vert sauf contexte contraire.
+- Quand la période précédente n’est pas disponible, l’indiquer explicitement plutôt que masquer silencieusement la tendance.
 
 ## Questions de contrôle avant chaque visuel
 
@@ -38,6 +64,8 @@ Avant d’ajouter ou recommander un visuel, vérifier :
 4. L’axe d’analyse apporte-t-il une vraie explication ?
 5. Le nom du graphique est-il significatif, en français, et différent du nom brut de la mesure ?
 6. Aide-t-il l’utilisateur métier à décider ou comprendre ?
+7. Occupe-t-il l’espace nécessaire à sa lecture et à son importance ?
+8. S’il s’agit d’un KPI ou d’une courbe, montre-t-il clairement la tendance vs période précédente ou sélectionnée ?
 
 Si la réponse est non, ne propose pas le visuel ou recommande de le déplacer.
 

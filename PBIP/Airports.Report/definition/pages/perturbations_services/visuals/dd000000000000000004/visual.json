@@ -3,13 +3,13 @@
   "name": "dd000000000000000004",
   "position": {
     "x": 620,
-    "y": 70,
+    "y": 65,
     "z": 3,
-    "height": 110,
+    "height": 120,
     "width": 280
   },
   "visual": {
-    "visualType": "card",
+    "visualType": "multiRowCard",
     "query": {
       "queryState": {
         "Values": {
@@ -27,6 +27,20 @@
               },
               "queryRef": "Fact_Flights.Attente moyenne (min)",
               "nativeQueryRef": "Attente moyenne (min)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Flights"
+                    }
+                  },
+                  "Property": "Signal attente moyenne"
+                }
+              },
+              "queryRef": "Fact_Flights.Signal attente moyenne",
+              "nativeQueryRef": "Signal attente moyenne"
             }
           ]
         }

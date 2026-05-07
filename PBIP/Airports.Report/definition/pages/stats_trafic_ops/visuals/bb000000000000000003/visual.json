@@ -3,13 +3,13 @@
   "name": "bb000000000000000003",
   "position": {
     "x": 320,
-    "y": 70,
+    "y": 65,
     "z": 2,
-    "height": 110,
+    "height": 120,
     "width": 280
   },
   "visual": {
-    "visualType": "card",
+    "visualType": "multiRowCard",
     "query": {
       "queryState": {
         "Values": {
@@ -27,6 +27,20 @@
               },
               "queryRef": "Fact_Flights.Taux de remplissage",
               "nativeQueryRef": "Taux de remplissage"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Flights"
+                    }
+                  },
+                  "Property": "Signal taux de remplissage"
+                }
+              },
+              "queryRef": "Fact_Flights.Signal taux de remplissage",
+              "nativeQueryRef": "Signal taux de remplissage"
             }
           ]
         }

@@ -5,8 +5,8 @@
     "x": 20,
     "y": 210,
     "z": 10,
-    "height": 245,
-    "width": 590
+    "height": 270,
+    "width": 560
   },
   "visual": {
     "visualType": "lineChart",
@@ -82,7 +82,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Tendance du trafic passagers'"
+                  "Value": "'Tendance du trafic passagers - signal dans le KPI'"
                 }
               }
             },

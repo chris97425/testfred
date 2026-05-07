@@ -82,7 +82,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Évolution du retard moyen'"
+                  "Value": "'Évolution du retard moyen - signal dans le KPI'"
                 }
               }
             },

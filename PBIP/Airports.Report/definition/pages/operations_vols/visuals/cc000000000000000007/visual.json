@@ -3,13 +3,13 @@
   "name": "cc000000000000000007",
   "position": {
     "x": 640,
-    "y": 205,
+    "y": 220,
     "z": 11,
-    "height": 245,
+    "height": 240,
     "width": 560
   },
   "visual": {
-    "visualType": "barChart",
+    "visualType": "clusteredColumnChart",
     "query": {
       "queryState": {
         "Category": {

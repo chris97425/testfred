@@ -3,16 +3,16 @@
   "name": "aa000000000000000009",
   "position": {
     "x": 20,
-    "y": 485,
+    "y": 505,
     "z": 20,
-    "height": 190,
+    "height": 170,
     "width": 1180
   },
   "visual": {
-    "visualType": "tableEx",
+    "visualType": "clusteredColumnChart",
     "query": {
       "queryState": {
-        "Values": {
+        "Category": {
           "projections": [
             {
               "field": {
@@ -27,7 +27,11 @@
               },
               "queryRef": "Dim_Terminal.TerminalName",
               "nativeQueryRef": "TerminalName"
-            },
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
             {
               "field": {
                 "Measure": {
@@ -41,48 +45,6 @@
               },
               "queryRef": "Fact_Flights.Total passagers",
               "nativeQueryRef": "Total passagers"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Fact_Flights"
-                    }
-                  },
-                  "Property": "Nombre de vols"
-                }
-              },
-              "queryRef": "Fact_Flights.Nombre de vols",
-              "nativeQueryRef": "Nombre de vols"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Fact_Flights"
-                    }
-                  },
-                  "Property": "Retard moyen (min)"
-                }
-              },
-              "queryRef": "Fact_Flights.Retard moyen (min)",
-              "nativeQueryRef": "Retard moyen (min)"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Fact_Flights"
-                    }
-                  },
-                  "Property": "Incidents"
-                }
-              },
-              "queryRef": "Fact_Flights.Incidents",
-              "nativeQueryRef": "Incidents"
             }
           ]
         }
@@ -103,7 +65,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Synthèse d''activité par terminal'"
+                  "Value": "'Répartition synthétique des passagers par terminal'"
                 }
               }
             },

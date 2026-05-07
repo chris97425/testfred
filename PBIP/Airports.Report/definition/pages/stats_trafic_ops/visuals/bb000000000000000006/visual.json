@@ -3,9 +3,9 @@
   "name": "bb000000000000000006",
   "position": {
     "x": 20,
-    "y": 205,
+    "y": 220,
     "z": 10,
-    "height": 245,
+    "height": 240,
     "width": 590
   },
   "visual": {
@@ -82,7 +82,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Évolution du trafic passagers'"
+                  "Value": "'Évolution du trafic passagers - signal dans le KPI'"
                 }
               }
             },

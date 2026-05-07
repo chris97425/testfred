@@ -3,13 +3,13 @@
   "name": "dd000000000000000003",
   "position": {
     "x": 320,
-    "y": 70,
+    "y": 65,
     "z": 2,
-    "height": 110,
+    "height": 120,
     "width": 280
   },
   "visual": {
-    "visualType": "card",
+    "visualType": "multiRowCard",
     "query": {
       "queryState": {
         "Values": {
@@ -27,6 +27,20 @@
               },
               "queryRef": "Fact_Flights.Passagers impactes",
               "nativeQueryRef": "Passagers impactes"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Flights"
+                    }
+                  },
+                  "Property": "Signal passagers impactes"
+                }
+              },
+              "queryRef": "Fact_Flights.Signal passagers impactes",
+              "nativeQueryRef": "Signal passagers impactes"
             }
           ]
         }

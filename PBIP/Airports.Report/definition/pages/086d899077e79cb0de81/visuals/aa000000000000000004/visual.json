@@ -2,14 +2,14 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
   "name": "aa000000000000000004",
   "position": {
-    "x": 500,
-    "y": 70,
+    "x": 620,
+    "y": 65,
     "z": 3,
-    "height": 110,
-    "width": 220
+    "height": 120,
+    "width": 280
   },
   "visual": {
-    "visualType": "card",
+    "visualType": "multiRowCard",
     "query": {
       "queryState": {
         "Values": {
@@ -27,6 +27,20 @@
               },
               "queryRef": "Fact_Flights.Taux de remplissage",
               "nativeQueryRef": "Taux de remplissage"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Flights"
+                    }
+                  },
+                  "Property": "Signal taux de remplissage"
+                }
+              },
+              "queryRef": "Fact_Flights.Signal taux de remplissage",
+              "nativeQueryRef": "Signal taux de remplissage"
             }
           ]
         }
