@@ -2,7 +2,9 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.0.0/schema.json",
   "pageOrder": [
     "086d899077e79cb0de81",
-    "stats_trafic_ops"
+    "stats_trafic_ops",
+    "operations_vols",
+    "perturbations_services"
   ],
-  "activePageName": "stats_trafic_ops"
+  "activePageName": "086d899077e79cb0de81"
 }

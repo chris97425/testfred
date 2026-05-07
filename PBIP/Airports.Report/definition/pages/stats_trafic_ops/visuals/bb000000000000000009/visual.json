@@ -1,0 +1,122 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "bb000000000000000009",
+  "position": {
+    "x": 610,
+    "y": 480,
+    "z": 21,
+    "height": 200,
+    "width": 590
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Terminal"
+                    }
+                  },
+                  "Property": "TerminalName"
+                }
+              },
+              "queryRef": "Dim_Terminal.TerminalName",
+              "nativeQueryRef": "TerminalName"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Flights"
+                    }
+                  },
+                  "Property": "Total passagers"
+                }
+              },
+              "queryRef": "Fact_Flights.Total passagers",
+              "nativeQueryRef": "Total passagers"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Flights"
+                    }
+                  },
+                  "Property": "Capacite sieges"
+                }
+              },
+              "queryRef": "Fact_Flights.Capacite sieges",
+              "nativeQueryRef": "Capacite sieges"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Flights"
+                    }
+                  },
+                  "Property": "Taux de remplissage"
+                }
+              },
+              "queryRef": "Fact_Flights.Taux de remplissage",
+              "nativeQueryRef": "Taux de remplissage"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Flights"
+                    }
+                  },
+                  "Property": "Flux passagers horaire"
+                }
+              },
+              "queryRef": "Fact_Flights.Flux passagers horaire",
+              "nativeQueryRef": "Flux passagers horaire"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Capacité et remplissage par terminal'"
+                }
+              }
+            },
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
-  "name": "086d899077e79cb0de81",
-  "displayName": "Vue d'ensemble de l'activité",
+  "name": "perturbations_services",
+  "displayName": "Perturbations & services",
   "displayOption": "FitToPage",
   "height": 720,
   "width": 1280

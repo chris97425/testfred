@@ -1,0 +1,66 @@
+---
+description: Power BI storytelling, business coherence, and analytical granularity rules
+globs:
+  - PBIP/**/*.{json,tmdl}
+alwaysApply: false
+---
+
+# Power BI Storytelling & Granularité
+
+Quand tu crées, modifies ou audites un rapport Power BI, construis-le comme une histoire analytique structurée, pas comme une accumulation de visuels.
+
+Principe à marteler :
+
+```txt
+Une page Power BI ne doit pas montrer tout ce qu’on peut afficher.
+Elle doit montrer uniquement ce qui aide à comprendre une partie précise de l’histoire.
+```
+
+## Règles obligatoires
+
+- Clarifier l’intention métier du rapport avant de proposer des pages, KPI ou visuels.
+- Ne jamais créer une page fourre-tout avec des sujets hétérogènes. Découper en pages distinctes quand les questions métier diffèrent.
+- Donner à chaque page un thème principal, un titre explicite et une granularité dominante : vols, passagers, revenus, retards, satisfaction, géographie, etc.
+- Ne pas mélanger des métriques de granularités différentes dans une même page sans justification claire.
+- Distinguer l’indicateur mesuré de l’axe d’analyse. Ne transforme pas tous les champs disponibles en graphiques.
+- Donner à chaque graphique un nom significatif en français, orienté métier, sans reprendre tel quel le nom d’une mesure. Utiliser le nom technique d’une mesure uniquement comme base de traduction quand il n’est pas déjà en français.
+- Organiser chaque page avec une hiérarchie lisible : KPI principaux, évolution temporelle, segmentation, détail, puis explication/tableau si nécessaire.
+- Justifier chaque visuel proposé : objectif métier, indicateur, axes utilisés, granularité, page cible et raison de placement.
+- Privilégier `clarté > exhaustivité`, `storytelling > accumulation`, `cohérence métier > démonstration technique`, `granularité homogène > mélange d’indicateurs`, `décision utilisateur > affichage de données`.
+
+## Questions de contrôle avant chaque visuel
+
+Avant d’ajouter ou recommander un visuel, vérifier :
+
+1. Sert-il l’histoire de la page ?
+2. Sa granularité est-elle cohérente avec le thème ?
+3. L’indicateur mesuré est-il clair ?
+4. L’axe d’analyse apporte-t-il une vraie explication ?
+5. Le nom du graphique est-il significatif, en français, et différent du nom brut de la mesure ?
+6. Aide-t-il l’utilisateur métier à décider ou comprendre ?
+
+Si la réponse est non, ne propose pas le visuel ou recommande de le déplacer.
+
+## Audit et restructuration
+
+Quand tu audites une page Power BI, signale les incohérences suivantes : trop de sujets sur une même page, granularités mélangées, visuels redondants, KPI hors thème, absence de progression narrative, titre vague, usage excessif de tableaux, filtres incohérents avec le périmètre.
+
+Si le rapport est trop chargé, propose une restructuration au format :
+
+- Page actuelle
+- Problèmes détectés
+- Pourquoi cela nuit à la compréhension
+- Proposition de découpage
+- Nouvelle structure recommandée
+
+## Format de réponse attendu
+
+Quand l’utilisateur demande de créer ou auditer un rapport Power BI, répondre avec :
+
+- Intention métier du rapport
+- Histoire globale proposée
+- Découpage recommandé des pages
+- Pour chaque page : objectif métier, granularité principale, KPI, visuels, axes, filtres, risques de confusion
+- Incohérences à éviter
+- Recommandations de design Power BI
+- Synthèse finale
