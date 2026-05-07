@@ -98,6 +98,7 @@ When editing Power BI PBIP files, preserve model consistency before changing rep
 - Prefer adding or editing measures in the semantic model `.tmdl` table where the related fact data lives.
 - When editing report `.json` files, validate that every referenced measure exists exactly once in the semantic model.
 - **Cartes KPI (`multiRowCard`, carte / `cardVisual`, etc.)** : la valeur principale doit référencer **`… N à date`** ou **`… N a date`** ; la tendance doit s’appuyer sur **`Écart % … N à date vs N-1 à date`** ou une **`Signal …`** conforme à `power-bi-storytelling.mdc` et `power-bi-time-measures.mdc`. Ne pas laisser une mesure brute seule sur la carte si le duo YTD / écart % existe ou doit exister — **mettre à jour le `.tmdl` et le `visual.json` ensemble**.
+- **KPI natif (`visualType: "kpi"`)** : respecter la structure Power BI native. `query.queryState.Indicator` doit pointer vers **`… N à date` / `… N a date`**, `query.queryState.Goal` vers **`… N-1 à date` / `… N-1 a date`**, et `query.queryState.TrendLine` vers la colonne date de la table calendrier active. Les filtres générés dans `filterConfig.filters` doivent référencer les mêmes champs. Vérifier aussi que le titre métier correspond à l’indicateur réel et ne présente pas `N-1 à date` comme un objectif métier si ce n’est qu’une référence comparative.
 
 Example check before creating a measure:
 

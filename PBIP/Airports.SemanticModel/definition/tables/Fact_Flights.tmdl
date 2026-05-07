@@ -164,9 +164,9 @@ table Fact_Flights
 						ISBLANK(Pct),
 						"Comparaison N-1 a date non disponible",
 						IF(
-							Pct >= 0,
-							UNICHAR(128994) & " +" & FORMAT(Pct, "0.0%") & " vs N-1 a date",
-							UNICHAR(128308) & " " & FORMAT(Pct, "0.0%") & " vs N-1 a date"
+							Pct <= 0,
+							UNICHAR(128994) & " " & FORMAT(Pct, "0.0%") & " vs N-1 a date",
+							UNICHAR(128308) & " +" & FORMAT(Pct, "0.0%") & " vs N-1 a date"
 						)
 					)
 				)
@@ -183,9 +183,9 @@ table Fact_Flights
 						ISBLANK(Pct),
 						"Comparaison N-1 a date non disponible",
 						IF(
-							Pct >= 0,
-							UNICHAR(128994) & " +" & FORMAT(Pct, "0.0%") & " vs N-1 a date",
-							UNICHAR(128308) & " " & FORMAT(Pct, "0.0%") & " vs N-1 a date"
+							Pct <= 0,
+							UNICHAR(128994) & " " & FORMAT(Pct, "0.0%") & " vs N-1 a date",
+							UNICHAR(128308) & " +" & FORMAT(Pct, "0.0%") & " vs N-1 a date"
 						)
 					)
 				)
@@ -202,9 +202,9 @@ table Fact_Flights
 						ISBLANK(Pct),
 						"Comparaison N-1 a date non disponible",
 						IF(
-							Pct >= 0,
-							UNICHAR(128994) & " +" & FORMAT(Pct, "0.0%") & " vs N-1 a date",
-							UNICHAR(128308) & " " & FORMAT(Pct, "0.0%") & " vs N-1 a date"
+							Pct <= 0,
+							UNICHAR(128994) & " " & FORMAT(Pct, "0.0%") & " vs N-1 a date",
+							UNICHAR(128308) & " +" & FORMAT(Pct, "0.0%") & " vs N-1 a date"
 						)
 					)
 				)
@@ -221,9 +221,9 @@ table Fact_Flights
 						ISBLANK(Pct),
 						"Comparaison N-1 a date non disponible",
 						IF(
-							Pct >= 0,
-							UNICHAR(128994) & " +" & FORMAT(Pct, "0.0%") & " vs N-1 a date",
-							UNICHAR(128308) & " " & FORMAT(Pct, "0.0%") & " vs N-1 a date"
+							Pct <= 0,
+							UNICHAR(128994) & " " & FORMAT(Pct, "0.0%") & " vs N-1 a date",
+							UNICHAR(128308) & " +" & FORMAT(Pct, "0.0%") & " vs N-1 a date"
 						)
 					)
 				)
@@ -240,9 +240,9 @@ table Fact_Flights
 						ISBLANK(Pct),
 						"Comparaison N-1 a date non disponible",
 						IF(
-							Pct >= 0,
-							UNICHAR(128994) & " +" & FORMAT(Pct, "0.0%") & " vs N-1 a date",
-							UNICHAR(128308) & " " & FORMAT(Pct, "0.0%") & " vs N-1 a date"
+							Pct <= 0,
+							UNICHAR(128994) & " " & FORMAT(Pct, "0.0%") & " vs N-1 a date",
+							UNICHAR(128308) & " +" & FORMAT(Pct, "0.0%") & " vs N-1 a date"
 						)
 					)
 				)
@@ -259,9 +259,9 @@ table Fact_Flights
 						ISBLANK(Pct),
 						"Comparaison N-1 a date non disponible",
 						IF(
-							Pct >= 0,
-							UNICHAR(128994) & " +" & FORMAT(Pct, "0.0%") & " vs N-1 a date",
-							UNICHAR(128308) & " " & FORMAT(Pct, "0.0%") & " vs N-1 a date"
+							Pct <= 0,
+							UNICHAR(128994) & " " & FORMAT(Pct, "0.0%") & " vs N-1 a date",
+							UNICHAR(128308) & " +" & FORMAT(Pct, "0.0%") & " vs N-1 a date"
 						)
 					)
 				)
@@ -278,9 +278,9 @@ table Fact_Flights
 						ISBLANK(Pct),
 						"Comparaison N-1 a date non disponible",
 						IF(
-							Pct >= 0,
-							UNICHAR(128994) & " +" & FORMAT(Pct, "0.0%") & " vs N-1 a date",
-							UNICHAR(128308) & " " & FORMAT(Pct, "0.0%") & " vs N-1 a date"
+							Pct <= 0,
+							UNICHAR(128994) & " " & FORMAT(Pct, "0.0%") & " vs N-1 a date",
+							UNICHAR(128308) & " +" & FORMAT(Pct, "0.0%") & " vs N-1 a date"
 						)
 					)
 				)

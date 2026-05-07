@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
   "name": "c1744e5402e6c3fd533a",
   "position": {
-    "x": 82.857142857142861,
-    "y": 164.28571428571431,
+    "x": 82.85714285714286,
+    "y": 164.2857142857143,
     "z": 0,
     "height": 185.71428571428572,
-    "width": 498.57142857142861,
+    "width": 498.5714285714286,
     "tabOrder": 0
   },
   "visual": {
@@ -79,7 +79,7 @@
             "goalText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Objectif'"
+                  "Value": "'Référence N-1 à date'"
                 }
               }
             }
@@ -114,7 +114,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Recette Totale vs Objectif'"
+                  "Value": "'Total passagers vs N-1 à date'"
                 }
               }
             },
@@ -165,33 +165,6 @@
             }
           }
         }
-      ],
-      "subTitle": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Voirie + Stationnement ( Hors Hopipark)'"
-                }
-              }
-            },
-            "alignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'center'"
-                }
-              }
-            }
-          }
-        }
       ]
     },
     "drillFilterOtherVisuals": true
@@ -199,7 +172,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "994e5f9893e8a075dd26",
+        "name": "ab6b9b325e6214d77247",
         "field": {
           "Measure": {
             "Expression": {
@@ -213,7 +186,7 @@
         "type": "Advanced"
       },
       {
-        "name": "05975b19860022808c46",
+        "name": "67410d29ad2ec0f6e7a0",
         "field": {
           "Measure": {
             "Expression": {
@@ -227,7 +200,7 @@
         "type": "Advanced"
       },
       {
-        "name": "50017d13ce12db4ce6ce",
+        "name": "29a355c4708f56fb53dd",
         "field": {
           "Column": {
             "Expression": {

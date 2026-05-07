@@ -25,12 +25,12 @@ Pour tout rapport Power BI PBIP de ce projet, appliquer le thème `Template_Sodi
 - Utiliser bordures `#cbd5e1`, radius 6 par défaut, padding 16 sur les visuels analytiques.
 - Centrer les titres de graphiques et garder les libellés à 9 px pour éviter la surcharge.
 - Positionner les légendes en haut et utiliser des axes sans titre quand le contexte du visuel est explicite.
-- KPI : valeur en `#0f172a`, libellé en `#64748b` ; tendance = **écart % N à date vs N-1 à date** ; vert `#57B35C` si écart % ≥ 0, rouge `#DC3E3E` si écart % < 0 (ou équivalent emoji / mise en forme conditionnelle — aligné sur `power-bi-storytelling.mdc`).
+- KPI : valeur en `#0f172a`, libellé en `#64748b` ; tendance = **écart % N à date vs N-1 à date** ou, pour `visualType: "kpi"` natif, comparaison **`Indicator = N à date` vs `Goal = N-1 à date`** ; vert `#57B35C` si l’écart est favorable, rouge `#DC3E3E` s’il est défavorable (ou équivalent emoji / mise en forme conditionnelle — aligné sur `power-bi-storytelling.mdc`).
 - Tableaux : en-têtes centrés, `Segoe UI Semibold`, fond d'en-tête basé sur la couleur de thème 2, totaux contrastés.
 
 ## Garde-fous
 
-- **KPI** : respecter l’obligation projet — valeur **`… N à date`** + tendance **`Écart % … N à date vs N-1 à date`** (ou `Signal …` équivalente), voir `power-bi-storytelling.mdc` ; ne pas utiliser la mesure brute comme seule grande valeur lorsque l’indicateur est cumulatif.
+- **KPI** : respecter l’obligation projet — valeur **`… N à date`** + tendance **`Écart % … N à date vs N-1 à date`** (ou `Signal …` équivalente), voir `power-bi-storytelling.mdc` ; ne pas utiliser la mesure brute comme seule grande valeur lorsque l’indicateur est cumulatif. Pour `visualType: "kpi"`, appliquer le schéma natif `Indicator = … N à date`, `Goal = … N-1 à date`, `TrendLine = Dim_Date[Date]` ou table calendrier active.
 - Ne pas revenir vers `VercelDark` ou `CY26SU02` pour un rapport marqué Sodiparc.
 - Ne pas disperser les styles directement dans chaque `visual.json` si le thème peut les porter.
 - Garder les styles spécifiques uniquement pour les titres métier, positions, ou exceptions analytiques justifiées.
