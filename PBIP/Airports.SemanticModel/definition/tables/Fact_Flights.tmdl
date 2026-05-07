@@ -274,6 +274,685 @@ table Fact_Flights
 					)
 				)
 		lineageTag: 41000000-0000-0000-0000-000000000012
+	measure 'Total passagers N' =
+			CALCULATE([Total passagers], YEAR('Dim_Date'[Date]) = YEAR(TODAY()))
+		formatString: 0
+		lineageTag: db33a9ad-8dd6-49e5-8536-153c8f849c4c
+
+	measure 'Total passagers N-1' =
+			CALCULATE([Total passagers], SAMEPERIODLASTYEAR('Dim_Date'[Date]))
+		formatString: 0
+		lineageTag: 4bfa7a5b-0bba-4643-8d38-1a9651226d7c
+
+	measure 'Total passagers N a date' =
+			CALCULATE([Total passagers], DATESYTD('Dim_Date'[Date]))
+		formatString: 0
+		lineageTag: 6553776e-c61d-4538-9d3d-705ee19743cc
+
+	measure 'Total passagers N-1 a date' =
+			CALCULATE([Total passagers], SAMEPERIODLASTYEAR(DATESYTD('Dim_Date'[Date])))
+		formatString: 0
+		lineageTag: 8e412c5c-f408-4952-955a-02f89f0f3be3
+
+	measure 'Ecart Total passagers N vs N-1' =
+			[Total passagers N] - [Total passagers N-1]
+		formatString: 0
+		lineageTag: a02dc9dc-9ec1-4c59-8194-b9a8e05b2145
+
+	measure 'Ecart % Total passagers N vs N-1' =
+			DIVIDE([Ecart Total passagers N vs N-1], [Total passagers N-1])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 96a92506-203e-4bcb-ad49-9f4f4b18c5f2
+
+	measure 'Ecart Total passagers N a date vs N-1 a date' =
+			[Total passagers N a date] - [Total passagers N-1 a date]
+		formatString: 0
+		lineageTag: 26b3f5ea-5729-4150-9811-5c6857954c01
+
+	measure 'Ecart % Total passagers N a date vs N-1 a date' =
+			DIVIDE([Ecart Total passagers N a date vs N-1 a date], [Total passagers N-1 a date])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 7cde3293-5758-4e08-9e95-d7205c5b959f
+
+	measure 'Total passagers M' =
+			CALCULATE([Total passagers], YEAR('Dim_Date'[Date]) = YEAR(TODAY()), MONTH('Dim_Date'[Date]) = MONTH(TODAY()))
+		formatString: 0
+		lineageTag: 4f117144-ea8f-4d4f-be12-5ce58f1bdb5d
+
+	measure 'Total passagers M-1' =
+			CALCULATE([Total passagers], PREVIOUSMONTH('Dim_Date'[Date]))
+		formatString: 0
+		lineageTag: edee8cdc-7d2c-497f-956f-7c4293225dff
+
+	measure 'Ecart Total passagers M vs M-1' =
+			[Total passagers M] - [Total passagers M-1]
+		formatString: 0
+		lineageTag: b878f5ec-a18d-49aa-bf9d-f928e5c1f6b7
+
+	measure 'Ecart % Total passagers M vs M-1' =
+			DIVIDE([Ecart Total passagers M vs M-1], [Total passagers M-1])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 09108b15-0e6d-4b69-9c5e-0e662ea01d95
+
+	measure 'Nombre de vols N' =
+			CALCULATE([Nombre de vols], YEAR('Dim_Date'[Date]) = YEAR(TODAY()))
+		formatString: 0
+		lineageTag: f650f450-990c-49a5-b6c3-55210bef2b8d
+
+	measure 'Nombre de vols N-1' =
+			CALCULATE([Nombre de vols], SAMEPERIODLASTYEAR('Dim_Date'[Date]))
+		formatString: 0
+		lineageTag: 5fb1f291-01fa-4fb2-aeef-34e254c72503
+
+	measure 'Nombre de vols N a date' =
+			CALCULATE([Nombre de vols], DATESYTD('Dim_Date'[Date]))
+		formatString: 0
+		lineageTag: 36306081-7a32-4bc1-9b36-f988602d4303
+
+	measure 'Nombre de vols N-1 a date' =
+			CALCULATE([Nombre de vols], SAMEPERIODLASTYEAR(DATESYTD('Dim_Date'[Date])))
+		formatString: 0
+		lineageTag: 92a2807f-ab49-40da-96a6-fdecdde03f65
+
+	measure 'Ecart Nombre de vols N vs N-1' =
+			[Nombre de vols N] - [Nombre de vols N-1]
+		formatString: 0
+		lineageTag: 2f7d7905-ad40-4a4e-91e1-fe00e57ff0f1
+
+	measure 'Ecart % Nombre de vols N vs N-1' =
+			DIVIDE([Ecart Nombre de vols N vs N-1], [Nombre de vols N-1])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: aae5cdbf-c8d9-4ccd-863d-ea69e5ed66c2
+
+	measure 'Ecart Nombre de vols N a date vs N-1 a date' =
+			[Nombre de vols N a date] - [Nombre de vols N-1 a date]
+		formatString: 0
+		lineageTag: f62af490-29dd-4230-b36f-356be84b91c5
+
+	measure 'Ecart % Nombre de vols N a date vs N-1 a date' =
+			DIVIDE([Ecart Nombre de vols N a date vs N-1 a date], [Nombre de vols N-1 a date])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 23b74874-9d80-4ab0-852c-562b8f3489f4
+
+	measure 'Nombre de vols M' =
+			CALCULATE([Nombre de vols], YEAR('Dim_Date'[Date]) = YEAR(TODAY()), MONTH('Dim_Date'[Date]) = MONTH(TODAY()))
+		formatString: 0
+		lineageTag: 19a89cae-ad5c-4a58-9a5a-6f13eaf51a6a
+
+	measure 'Nombre de vols M-1' =
+			CALCULATE([Nombre de vols], PREVIOUSMONTH('Dim_Date'[Date]))
+		formatString: 0
+		lineageTag: 20032908-2767-4408-b2a4-894402d5d814
+
+	measure 'Ecart Nombre de vols M vs M-1' =
+			[Nombre de vols M] - [Nombre de vols M-1]
+		formatString: 0
+		lineageTag: ce0a1796-4636-429b-ab13-a4da4582ad2f
+
+	measure 'Ecart % Nombre de vols M vs M-1' =
+			DIVIDE([Ecart Nombre de vols M vs M-1], [Nombre de vols M-1])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: ad3e6b8b-10ab-41d5-b3ed-095d03790846
+
+	measure 'Capacite sieges N' =
+			CALCULATE([Capacite sieges], YEAR('Dim_Date'[Date]) = YEAR(TODAY()))
+		formatString: 0
+		lineageTag: f5f59efa-1038-4f5b-bfd6-bd2933b7ef76
+
+	measure 'Capacite sieges N-1' =
+			CALCULATE([Capacite sieges], SAMEPERIODLASTYEAR('Dim_Date'[Date]))
+		formatString: 0
+		lineageTag: 9e95d650-64c9-4bcf-abbc-a55f7a6925ee
+
+	measure 'Capacite sieges N a date' =
+			CALCULATE([Capacite sieges], DATESYTD('Dim_Date'[Date]))
+		formatString: 0
+		lineageTag: d26a041f-2d5d-4340-b902-961b95016288
+
+	measure 'Capacite sieges N-1 a date' =
+			CALCULATE([Capacite sieges], SAMEPERIODLASTYEAR(DATESYTD('Dim_Date'[Date])))
+		formatString: 0
+		lineageTag: c013af5b-ca79-4e45-a443-767af60c7fcf
+
+	measure 'Ecart Capacite sieges N vs N-1' =
+			[Capacite sieges N] - [Capacite sieges N-1]
+		formatString: 0
+		lineageTag: 83047871-07f4-421d-8768-823d89193411
+
+	measure 'Ecart % Capacite sieges N vs N-1' =
+			DIVIDE([Ecart Capacite sieges N vs N-1], [Capacite sieges N-1])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: ebc25633-9a24-4a91-99cc-ea07af3e813e
+
+	measure 'Ecart Capacite sieges N a date vs N-1 a date' =
+			[Capacite sieges N a date] - [Capacite sieges N-1 a date]
+		formatString: 0
+		lineageTag: f1c66efc-455c-447a-accf-9156278bf460
+
+	measure 'Ecart % Capacite sieges N a date vs N-1 a date' =
+			DIVIDE([Ecart Capacite sieges N a date vs N-1 a date], [Capacite sieges N-1 a date])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 45f0b2dc-08f4-4564-86dd-88a18669cf69
+
+	measure 'Capacite sieges M' =
+			CALCULATE([Capacite sieges], YEAR('Dim_Date'[Date]) = YEAR(TODAY()), MONTH('Dim_Date'[Date]) = MONTH(TODAY()))
+		formatString: 0
+		lineageTag: 457f6ab7-dccc-4009-b5cf-66464d9d80d6
+
+	measure 'Capacite sieges M-1' =
+			CALCULATE([Capacite sieges], PREVIOUSMONTH('Dim_Date'[Date]))
+		formatString: 0
+		lineageTag: 6d47b31a-73d5-453e-a108-10f98454dfe5
+
+	measure 'Ecart Capacite sieges M vs M-1' =
+			[Capacite sieges M] - [Capacite sieges M-1]
+		formatString: 0
+		lineageTag: 1062a077-96ed-4597-bec0-8b3692cbe33a
+
+	measure 'Ecart % Capacite sieges M vs M-1' =
+			DIVIDE([Ecart Capacite sieges M vs M-1], [Capacite sieges M-1])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 703f0ed7-6ed1-4edf-b2c7-03ac43a2a0c1
+
+	measure 'Taux de remplissage N' =
+			CALCULATE([Taux de remplissage], YEAR('Dim_Date'[Date]) = YEAR(TODAY()))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 8ef5a3e5-cc1c-498c-9f51-10b308803a02
+
+	measure 'Taux de remplissage N-1' =
+			CALCULATE([Taux de remplissage], SAMEPERIODLASTYEAR('Dim_Date'[Date]))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: ce61eca4-dca8-4cf2-9758-75bedfb4574b
+
+	measure 'Taux de remplissage N a date' =
+			CALCULATE([Taux de remplissage], DATESYTD('Dim_Date'[Date]))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 60c7cf75-c482-4a4d-8daa-8c059c69c374
+
+	measure 'Taux de remplissage N-1 a date' =
+			CALCULATE([Taux de remplissage], SAMEPERIODLASTYEAR(DATESYTD('Dim_Date'[Date])))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: c5d1fa49-ab91-4d2f-bde4-6081e509552c
+
+	measure 'Ecart Taux de remplissage N vs N-1' =
+			[Taux de remplissage N] - [Taux de remplissage N-1]
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: e95b4210-e11c-4272-950d-9e99cab3321b
+
+	measure 'Ecart % Taux de remplissage N vs N-1' =
+			DIVIDE([Ecart Taux de remplissage N vs N-1], [Taux de remplissage N-1])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 8f016b8a-b390-4077-82c8-f3ea9caddfd3
+
+	measure 'Ecart Taux de remplissage N a date vs N-1 a date' =
+			[Taux de remplissage N a date] - [Taux de remplissage N-1 a date]
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: fd6e391a-8c17-4edc-b566-f024fa3238d2
+
+	measure 'Ecart % Taux de remplissage N a date vs N-1 a date' =
+			DIVIDE([Ecart Taux de remplissage N a date vs N-1 a date], [Taux de remplissage N-1 a date])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: d52e1aac-2819-42a4-9e92-325edf6934df
+
+	measure 'Taux de remplissage M' =
+			CALCULATE([Taux de remplissage], YEAR('Dim_Date'[Date]) = YEAR(TODAY()), MONTH('Dim_Date'[Date]) = MONTH(TODAY()))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: d23a101a-6c40-4de1-82c9-5142a77e8bc5
+
+	measure 'Taux de remplissage M-1' =
+			CALCULATE([Taux de remplissage], PREVIOUSMONTH('Dim_Date'[Date]))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 1c3d8156-8df3-4ed7-bcaa-99e14e69919f
+
+	measure 'Ecart Taux de remplissage M vs M-1' =
+			[Taux de remplissage M] - [Taux de remplissage M-1]
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 7fd97a26-7406-493b-821e-def9a6040615
+
+	measure 'Ecart % Taux de remplissage M vs M-1' =
+			DIVIDE([Ecart Taux de remplissage M vs M-1], [Taux de remplissage M-1])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 7207df62-1f6d-47b9-8f46-4e8c835eafb7
+
+	measure 'Retard moyen (min) N' =
+			CALCULATE([Retard moyen (min)], YEAR('Dim_Date'[Date]) = YEAR(TODAY()))
+		formatString: 0.0
+		lineageTag: 0433e6b3-5019-4773-ad2c-3cfcc855bd34
+
+	measure 'Retard moyen (min) N-1' =
+			CALCULATE([Retard moyen (min)], SAMEPERIODLASTYEAR('Dim_Date'[Date]))
+		formatString: 0.0
+		lineageTag: 690b6819-ff3d-4fed-8e06-f69584ea7ec5
+
+	measure 'Retard moyen (min) N a date' =
+			CALCULATE([Retard moyen (min)], DATESYTD('Dim_Date'[Date]))
+		formatString: 0.0
+		lineageTag: 12ba7541-a386-4b54-810e-40accc9d29c0
+
+	measure 'Retard moyen (min) N-1 a date' =
+			CALCULATE([Retard moyen (min)], SAMEPERIODLASTYEAR(DATESYTD('Dim_Date'[Date])))
+		formatString: 0.0
+		lineageTag: d4f49e76-6a9e-4f45-989f-cbb95c200bf1
+
+	measure 'Ecart Retard moyen (min) N vs N-1' =
+			[Retard moyen (min) N] - [Retard moyen (min) N-1]
+		formatString: 0.0
+		lineageTag: 86a4176e-8881-431b-911d-54031b6330ce
+
+	measure 'Ecart % Retard moyen (min) N vs N-1' =
+			DIVIDE([Ecart Retard moyen (min) N vs N-1], [Retard moyen (min) N-1])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: b4546d3d-fde4-490c-b00f-255466b4478d
+
+	measure 'Ecart Retard moyen (min) N a date vs N-1 a date' =
+			[Retard moyen (min) N a date] - [Retard moyen (min) N-1 a date]
+		formatString: 0.0
+		lineageTag: efbc1f36-6577-445e-8938-eb49c0c7c5b8
+
+	measure 'Ecart % Retard moyen (min) N a date vs N-1 a date' =
+			DIVIDE([Ecart Retard moyen (min) N a date vs N-1 a date], [Retard moyen (min) N-1 a date])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 94008b20-4511-4bb1-91f2-4312a20b3825
+
+	measure 'Retard moyen (min) M' =
+			CALCULATE([Retard moyen (min)], YEAR('Dim_Date'[Date]) = YEAR(TODAY()), MONTH('Dim_Date'[Date]) = MONTH(TODAY()))
+		formatString: 0.0
+		lineageTag: 6202d391-a0c3-475f-854c-b0dff46d91a2
+
+	measure 'Retard moyen (min) M-1' =
+			CALCULATE([Retard moyen (min)], PREVIOUSMONTH('Dim_Date'[Date]))
+		formatString: 0.0
+		lineageTag: 47b470a7-5136-4ac1-8ed7-769813dde4df
+
+	measure 'Ecart Retard moyen (min) M vs M-1' =
+			[Retard moyen (min) M] - [Retard moyen (min) M-1]
+		formatString: 0.0
+		lineageTag: 865ea382-5fac-4a9f-9a51-b0c88542fa68
+
+	measure 'Ecart % Retard moyen (min) M vs M-1' =
+			DIVIDE([Ecart Retard moyen (min) M vs M-1], [Retard moyen (min) M-1])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 3f623422-3d79-4916-9e58-391418cf4fec
+
+	measure 'Vols retardes N' =
+			CALCULATE([Vols retardes], YEAR('Dim_Date'[Date]) = YEAR(TODAY()))
+		formatString: 0
+		lineageTag: e9c80d96-4178-4f08-a1d4-bca34effefe2
+
+	measure 'Vols retardes N-1' =
+			CALCULATE([Vols retardes], SAMEPERIODLASTYEAR('Dim_Date'[Date]))
+		formatString: 0
+		lineageTag: b1e2d154-8fee-4d54-85aa-6144a9a14aaa
+
+	measure 'Vols retardes N a date' =
+			CALCULATE([Vols retardes], DATESYTD('Dim_Date'[Date]))
+		formatString: 0
+		lineageTag: d07db406-1f9e-44ab-9568-691dfdeffb1e
+
+	measure 'Vols retardes N-1 a date' =
+			CALCULATE([Vols retardes], SAMEPERIODLASTYEAR(DATESYTD('Dim_Date'[Date])))
+		formatString: 0
+		lineageTag: 1028403f-3d22-49ae-bcba-9dbcab37d051
+
+	measure 'Ecart Vols retardes N vs N-1' =
+			[Vols retardes N] - [Vols retardes N-1]
+		formatString: 0
+		lineageTag: e11d62c7-30fb-4bd6-bf02-baea15acf398
+
+	measure 'Ecart % Vols retardes N vs N-1' =
+			DIVIDE([Ecart Vols retardes N vs N-1], [Vols retardes N-1])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 73eb4a22-a92d-4ee4-8482-e5e8b760974e
+
+	measure 'Ecart Vols retardes N a date vs N-1 a date' =
+			[Vols retardes N a date] - [Vols retardes N-1 a date]
+		formatString: 0
+		lineageTag: e73f3aa8-db6e-40f6-9d6b-e7eb491b7aee
+
+	measure 'Ecart % Vols retardes N a date vs N-1 a date' =
+			DIVIDE([Ecart Vols retardes N a date vs N-1 a date], [Vols retardes N-1 a date])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: e3c3888d-5cd1-4010-8f1a-d26718736ea2
+
+	measure 'Vols retardes M' =
+			CALCULATE([Vols retardes], YEAR('Dim_Date'[Date]) = YEAR(TODAY()), MONTH('Dim_Date'[Date]) = MONTH(TODAY()))
+		formatString: 0
+		lineageTag: f0d6408f-8ac7-4c11-8e36-3c73b34ae56d
+
+	measure 'Vols retardes M-1' =
+			CALCULATE([Vols retardes], PREVIOUSMONTH('Dim_Date'[Date]))
+		formatString: 0
+		lineageTag: 74c953c0-6b83-47a3-af9f-6ca71cf0399b
+
+	measure 'Ecart Vols retardes M vs M-1' =
+			[Vols retardes M] - [Vols retardes M-1]
+		formatString: 0
+		lineageTag: 065bfcc9-04a2-4dfb-9d92-9cf81ba71472
+
+	measure 'Ecart % Vols retardes M vs M-1' =
+			DIVIDE([Ecart Vols retardes M vs M-1], [Vols retardes M-1])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: cb404cba-bf14-4214-8819-990bbf12e301
+
+	measure 'Taux vols retardes N' =
+			CALCULATE([Taux vols retardes], YEAR('Dim_Date'[Date]) = YEAR(TODAY()))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 26fdb70e-58a5-4736-8151-8e5334d05a8c
+
+	measure 'Taux vols retardes N-1' =
+			CALCULATE([Taux vols retardes], SAMEPERIODLASTYEAR('Dim_Date'[Date]))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: e074f616-6342-4c57-9c06-c118261e6ac0
+
+	measure 'Taux vols retardes N a date' =
+			CALCULATE([Taux vols retardes], DATESYTD('Dim_Date'[Date]))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 247c7bbb-1716-486c-8b62-29dfd578073c
+
+	measure 'Taux vols retardes N-1 a date' =
+			CALCULATE([Taux vols retardes], SAMEPERIODLASTYEAR(DATESYTD('Dim_Date'[Date])))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: ca079830-92f1-415e-be14-7b6a8999b320
+
+	measure 'Ecart Taux vols retardes N vs N-1' =
+			[Taux vols retardes N] - [Taux vols retardes N-1]
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: b4b637ad-862f-41ae-9f59-47bb3cb71c5a
+
+	measure 'Ecart % Taux vols retardes N vs N-1' =
+			DIVIDE([Ecart Taux vols retardes N vs N-1], [Taux vols retardes N-1])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: b15cedff-41f5-4295-bb1f-97fd38e0c939
+
+	measure 'Ecart Taux vols retardes N a date vs N-1 a date' =
+			[Taux vols retardes N a date] - [Taux vols retardes N-1 a date]
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 7ad8ce50-f862-4a44-987a-442e79c6af18
+
+	measure 'Ecart % Taux vols retardes N a date vs N-1 a date' =
+			DIVIDE([Ecart Taux vols retardes N a date vs N-1 a date], [Taux vols retardes N-1 a date])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 780bb5b6-ba67-4c32-8671-a7bbb9a33eed
+
+	measure 'Taux vols retardes M' =
+			CALCULATE([Taux vols retardes], YEAR('Dim_Date'[Date]) = YEAR(TODAY()), MONTH('Dim_Date'[Date]) = MONTH(TODAY()))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 2d01d012-32c4-4e35-ae5f-2c389cb44fdc
+
+	measure 'Taux vols retardes M-1' =
+			CALCULATE([Taux vols retardes], PREVIOUSMONTH('Dim_Date'[Date]))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 83769f69-00fd-4b7d-b15b-20e57c8da1ed
+
+	measure 'Ecart Taux vols retardes M vs M-1' =
+			[Taux vols retardes M] - [Taux vols retardes M-1]
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: c90e0c8a-49b5-4650-8203-82083cbecd0f
+
+	measure 'Ecart % Taux vols retardes M vs M-1' =
+			DIVIDE([Ecart Taux vols retardes M vs M-1], [Taux vols retardes M-1])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 879fa39a-0cf0-4c16-834f-b880d969a345
+
+	measure 'Flux passagers horaire M' =
+			CALCULATE([Flux passagers horaire], YEAR('Dim_Date'[Date]) = YEAR(TODAY()), MONTH('Dim_Date'[Date]) = MONTH(TODAY()))
+		formatString: 0
+		lineageTag: 245779f7-4ad2-48b3-90da-b3fe925bd186
+
+	measure 'Flux passagers horaire M-1' =
+			CALCULATE([Flux passagers horaire], PREVIOUSMONTH('Dim_Date'[Date]))
+		formatString: 0
+		lineageTag: 8901c83f-6beb-427e-9988-f557058d51d0
+
+	measure 'Ecart Flux passagers horaire M vs M-1' =
+			[Flux passagers horaire M] - [Flux passagers horaire M-1]
+		formatString: 0
+		lineageTag: cc9c8bbe-20f5-4ff5-98c9-d5c341394a55
+
+	measure 'Ecart % Flux passagers horaire M vs M-1' =
+			DIVIDE([Ecart Flux passagers horaire M vs M-1], [Flux passagers horaire M-1])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 0115a3ca-60f6-4599-8c1e-134dc5adc519
+
+	measure 'Incidents N' =
+			CALCULATE([Incidents], YEAR('Dim_Date'[Date]) = YEAR(TODAY()))
+		formatString: 0
+		lineageTag: f24ad38a-7e55-43a2-a7f0-2c10dbacac65
+
+	measure 'Incidents N-1' =
+			CALCULATE([Incidents], SAMEPERIODLASTYEAR('Dim_Date'[Date]))
+		formatString: 0
+		lineageTag: 5e8b14d3-b74d-4c5d-901a-876f810e0c72
+
+	measure 'Incidents N a date' =
+			CALCULATE([Incidents], DATESYTD('Dim_Date'[Date]))
+		formatString: 0
+		lineageTag: e7d8cd85-bc6f-4c40-88f8-3aa7a34f2afe
+
+	measure 'Incidents N-1 a date' =
+			CALCULATE([Incidents], SAMEPERIODLASTYEAR(DATESYTD('Dim_Date'[Date])))
+		formatString: 0
+		lineageTag: d5ed176f-4a57-4158-a2fe-d6bef39ed5d1
+
+	measure 'Ecart Incidents N vs N-1' =
+			[Incidents N] - [Incidents N-1]
+		formatString: 0
+		lineageTag: a28ae063-dae0-414a-a111-03277005af14
+
+	measure 'Ecart % Incidents N vs N-1' =
+			DIVIDE([Ecart Incidents N vs N-1], [Incidents N-1])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: a39f9649-806a-4cef-8138-d5a4a8f30979
+
+	measure 'Ecart Incidents N a date vs N-1 a date' =
+			[Incidents N a date] - [Incidents N-1 a date]
+		formatString: 0
+		lineageTag: b907804b-691e-4345-829f-013dc070d1fd
+
+	measure 'Ecart % Incidents N a date vs N-1 a date' =
+			DIVIDE([Ecart Incidents N a date vs N-1 a date], [Incidents N-1 a date])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: e78075e4-bcd2-430a-8fa9-b7293c608354
+
+	measure 'Incidents M' =
+			CALCULATE([Incidents], YEAR('Dim_Date'[Date]) = YEAR(TODAY()), MONTH('Dim_Date'[Date]) = MONTH(TODAY()))
+		formatString: 0
+		lineageTag: c299ec6d-3d88-4c1b-bcc3-e520096ce1e3
+
+	measure 'Incidents M-1' =
+			CALCULATE([Incidents], PREVIOUSMONTH('Dim_Date'[Date]))
+		formatString: 0
+		lineageTag: f31d3f6e-9253-4910-b7a1-312fe2e053ff
+
+	measure 'Ecart Incidents M vs M-1' =
+			[Incidents M] - [Incidents M-1]
+		formatString: 0
+		lineageTag: 3977f5e9-bb50-4142-82e1-be2a0b9b7500
+
+	measure 'Ecart % Incidents M vs M-1' =
+			DIVIDE([Ecart Incidents M vs M-1], [Incidents M-1])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: dbf33751-0692-48ef-8c11-961b33c87e15
+
+	measure 'Passagers impactes N' =
+			CALCULATE([Passagers impactes], YEAR('Dim_Date'[Date]) = YEAR(TODAY()))
+		formatString: 0
+		lineageTag: 70b0fdf0-0879-4d19-89f4-4e1e63a403c9
+
+	measure 'Passagers impactes N-1' =
+			CALCULATE([Passagers impactes], SAMEPERIODLASTYEAR('Dim_Date'[Date]))
+		formatString: 0
+		lineageTag: f0c17609-047b-43a2-a5b3-a8156f4489fa
+
+	measure 'Passagers impactes N a date' =
+			CALCULATE([Passagers impactes], DATESYTD('Dim_Date'[Date]))
+		formatString: 0
+		lineageTag: bea1ac65-4ae6-4b6e-bfd7-50c6e8e57923
+
+	measure 'Passagers impactes N-1 a date' =
+			CALCULATE([Passagers impactes], SAMEPERIODLASTYEAR(DATESYTD('Dim_Date'[Date])))
+		formatString: 0
+		lineageTag: 772529e2-16df-4ffa-88b0-1f62619a3512
+
+	measure 'Ecart Passagers impactes N vs N-1' =
+			[Passagers impactes N] - [Passagers impactes N-1]
+		formatString: 0
+		lineageTag: 9a931ade-1dcb-4c84-a404-5f16b44a01db
+
+	measure 'Ecart % Passagers impactes N vs N-1' =
+			DIVIDE([Ecart Passagers impactes N vs N-1], [Passagers impactes N-1])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 7065fa33-60a2-495e-a4fd-121b6a1a34e5
+
+	measure 'Ecart Passagers impactes N a date vs N-1 a date' =
+			[Passagers impactes N a date] - [Passagers impactes N-1 a date]
+		formatString: 0
+		lineageTag: 68cac93d-d154-43be-bd41-5e61cd4411c1
+
+	measure 'Ecart % Passagers impactes N a date vs N-1 a date' =
+			DIVIDE([Ecart Passagers impactes N a date vs N-1 a date], [Passagers impactes N-1 a date])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 7862a611-6e4f-451d-b686-1f6cc3848fae
+
+	measure 'Passagers impactes M' =
+			CALCULATE([Passagers impactes], YEAR('Dim_Date'[Date]) = YEAR(TODAY()), MONTH('Dim_Date'[Date]) = MONTH(TODAY()))
+		formatString: 0
+		lineageTag: 13c3fae8-8afc-42b9-8a27-f9e795a48dad
+
+	measure 'Passagers impactes M-1' =
+			CALCULATE([Passagers impactes], PREVIOUSMONTH('Dim_Date'[Date]))
+		formatString: 0
+		lineageTag: aee92d7d-fe7b-4794-84ce-ea804464d40a
+
+	measure 'Ecart Passagers impactes M vs M-1' =
+			[Passagers impactes M] - [Passagers impactes M-1]
+		formatString: 0
+		lineageTag: a153bd97-1f71-41df-a236-50105341112a
+
+	measure 'Ecart % Passagers impactes M vs M-1' =
+			DIVIDE([Ecart Passagers impactes M vs M-1], [Passagers impactes M-1])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: ce5bb6b3-4335-485c-866a-b788f1f7f6d9
+
+	measure 'Attente moyenne (min) N' =
+			CALCULATE([Attente moyenne (min)], YEAR('Dim_Date'[Date]) = YEAR(TODAY()))
+		formatString: 0.0
+		lineageTag: 15717d58-0bb8-4ae5-a8fd-3e5e3deb463f
+
+	measure 'Attente moyenne (min) N-1' =
+			CALCULATE([Attente moyenne (min)], SAMEPERIODLASTYEAR('Dim_Date'[Date]))
+		formatString: 0.0
+		lineageTag: 0ce7af59-4c95-4d44-bad2-b93407fd80d5
+
+	measure 'Attente moyenne (min) N a date' =
+			CALCULATE([Attente moyenne (min)], DATESYTD('Dim_Date'[Date]))
+		formatString: 0.0
+		lineageTag: 927603df-125e-4a83-b2d7-3d84e9d235ce
+
+	measure 'Attente moyenne (min) N-1 a date' =
+			CALCULATE([Attente moyenne (min)], SAMEPERIODLASTYEAR(DATESYTD('Dim_Date'[Date])))
+		formatString: 0.0
+		lineageTag: 8cc6f17d-558e-4e44-8930-3195e98388ed
+
+	measure 'Ecart Attente moyenne (min) N vs N-1' =
+			[Attente moyenne (min) N] - [Attente moyenne (min) N-1]
+		formatString: 0.0
+		lineageTag: c05d1c97-dcc4-4037-8cd2-f08a45f39350
+
+	measure 'Ecart % Attente moyenne (min) N vs N-1' =
+			DIVIDE([Ecart Attente moyenne (min) N vs N-1], [Attente moyenne (min) N-1])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: f7343ced-dfae-4fb1-a3b0-e6b68df1c79f
+
+	measure 'Ecart Attente moyenne (min) N a date vs N-1 a date' =
+			[Attente moyenne (min) N a date] - [Attente moyenne (min) N-1 a date]
+		formatString: 0.0
+		lineageTag: 641f585c-31ef-4c5c-96c7-91ae071ad86f
+
+	measure 'Ecart % Attente moyenne (min) N a date vs N-1 a date' =
+			DIVIDE([Ecart Attente moyenne (min) N a date vs N-1 a date], [Attente moyenne (min) N-1 a date])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: eeb9cae0-bb2d-4461-ba19-0f5b877c6454
+
+	measure 'Attente moyenne (min) M' =
+			CALCULATE([Attente moyenne (min)], YEAR('Dim_Date'[Date]) = YEAR(TODAY()), MONTH('Dim_Date'[Date]) = MONTH(TODAY()))
+		formatString: 0.0
+		lineageTag: 8f66b7a4-7c5b-4b83-8464-103c3bca1a66
+
+	measure 'Attente moyenne (min) M-1' =
+			CALCULATE([Attente moyenne (min)], PREVIOUSMONTH('Dim_Date'[Date]))
+		formatString: 0.0
+		lineageTag: 82f51b8d-875a-4818-ba39-32600530caba
+
+	measure 'Ecart Attente moyenne (min) M vs M-1' =
+			[Attente moyenne (min) M] - [Attente moyenne (min) M-1]
+		formatString: 0.0
+		lineageTag: 9ada7c1f-447e-41b0-a51b-0eb425d132d8
+
+	measure 'Ecart % Attente moyenne (min) M vs M-1' =
+			DIVIDE([Ecart Attente moyenne (min) M vs M-1], [Attente moyenne (min) M-1])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 76022e94-fc74-4156-9c56-4c4d0ff25ffb
+
+	measure 'Taux bagages mal traites N' =
+			CALCULATE([Taux bagages mal traites], YEAR('Dim_Date'[Date]) = YEAR(TODAY()))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 47255c91-0fbd-4d73-b291-bce09f0df180
+
+	measure 'Taux bagages mal traites N-1' =
+			CALCULATE([Taux bagages mal traites], SAMEPERIODLASTYEAR('Dim_Date'[Date]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 18e33157-6c80-4337-9580-8298b30403db
+
+	measure 'Taux bagages mal traites N a date' =
+			CALCULATE([Taux bagages mal traites], DATESYTD('Dim_Date'[Date]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 84cdb2d3-376c-4446-b8aa-7159fc400b2d
+
+	measure 'Taux bagages mal traites N-1 a date' =
+			CALCULATE([Taux bagages mal traites], SAMEPERIODLASTYEAR(DATESYTD('Dim_Date'[Date])))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: c838627e-3368-41a6-96c0-f1f40b32adf2
+
+	measure 'Ecart Taux bagages mal traites N vs N-1' =
+			[Taux bagages mal traites N] - [Taux bagages mal traites N-1]
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 5975060a-d1ca-464a-b9b3-029a3e27e2bf
+
+	measure 'Ecart % Taux bagages mal traites N vs N-1' =
+			DIVIDE([Ecart Taux bagages mal traites N vs N-1], [Taux bagages mal traites N-1])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 6ff0fbe6-e768-485b-9b53-4d77f0e9c8c3
+
+	measure 'Ecart Taux bagages mal traites N a date vs N-1 a date' =
+			[Taux bagages mal traites N a date] - [Taux bagages mal traites N-1 a date]
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d1b8cce7-9fbb-4364-b9fe-33db2e86f037
+
+	measure 'Ecart % Taux bagages mal traites N a date vs N-1 a date' =
+			DIVIDE([Ecart Taux bagages mal traites N a date vs N-1 a date], [Taux bagages mal traites N-1 a date])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: b2165c97-12d1-4f96-ad25-887b758fdfb4
+
+	measure 'Taux bagages mal traites M' =
+			CALCULATE([Taux bagages mal traites], YEAR('Dim_Date'[Date]) = YEAR(TODAY()), MONTH('Dim_Date'[Date]) = MONTH(TODAY()))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: e7f707e1-d029-4617-b924-53c8d4551d47
+
+	measure 'Taux bagages mal traites M-1' =
+			CALCULATE([Taux bagages mal traites], PREVIOUSMONTH('Dim_Date'[Date]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 12b9ed8b-d2a2-4549-81ae-9a3d13ce51c4
+
+	measure 'Ecart Taux bagages mal traites M vs M-1' =
+			[Taux bagages mal traites M] - [Taux bagages mal traites M-1]
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: a3eea53f-73bc-4b14-ade8-96a770a9c871
+
+	measure 'Ecart % Taux bagages mal traites M vs M-1' =
+			DIVIDE([Ecart Taux bagages mal traites M vs M-1], [Taux bagages mal traites M-1])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 2fd7589b-df0d-4c34-81d7-21fc1137a8c6
 
 	column FlightID
 		dataType: string

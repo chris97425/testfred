@@ -88,6 +88,27 @@ table Dim_Date
 
 		annotation SummarizationSetBy = Automatic
 
+	column YearMonth = FORMAT([Date], "yyyy-MM")
+		dataType: string
+		lineageTag: 7c8f3a21-2e44-4d1b-9c0a-1f3e8b2d6a50
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsCurrentMonth =
+			IF(
+				YEAR([Date]) = YEAR(TODAY())
+					&& MONTH([Date]) = MONTH(TODAY()),
+				1,
+				0
+			)
+		dataType: int64
+		formatString: 0
+		lineageTag: 9d2e6c4b-8a7f-4e9d-b1c2-3a5f7e8d0c61
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Dim_Date = m
 		mode: import
 		source =
