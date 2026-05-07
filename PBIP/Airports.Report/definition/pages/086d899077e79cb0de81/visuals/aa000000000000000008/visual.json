@@ -4,7 +4,7 @@
   "position": {
     "x": 610,
     "y": 210,
-    "z": 11,
+    "z": 5000,
     "height": 270,
     "width": 590
   },
@@ -26,7 +26,8 @@
                 }
               },
               "queryRef": "Dim_Airline.AirlineName",
-              "nativeQueryRef": "AirlineName"
+              "nativeQueryRef": "AirlineName",
+              "active": true
             }
           ]
         },
@@ -50,35 +51,6 @@
         }
       }
     },
-    "drillFilterOtherVisuals": true,
-    "objects": {
-      "title": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Trafic passagers par compagnie'"
-                }
-              }
-            },
-            "titleWrap": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ]
-    }
+    "drillFilterOtherVisuals": true
   }
 }

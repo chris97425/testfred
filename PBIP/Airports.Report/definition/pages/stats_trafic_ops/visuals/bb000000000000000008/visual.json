@@ -26,7 +26,8 @@
                 }
               },
               "queryRef": "Fact_PaxFlow_Hourly.Hour",
-              "nativeQueryRef": "Hour"
+              "nativeQueryRef": "Hour",
+              "active": true
             }
           ]
         },
@@ -67,35 +68,6 @@
         ]
       }
     },
-    "drillFilterOtherVisuals": true,
-    "objects": {
-      "title": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Flux passagers par heure'"
-                }
-              }
-            },
-            "titleWrap": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ]
-    }
+    "drillFilterOtherVisuals": true
   }
 }

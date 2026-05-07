@@ -26,7 +26,8 @@
                 }
               },
               "queryRef": "Dim_Airline.AirlineName",
-              "nativeQueryRef": "AirlineName"
+              "nativeQueryRef": "AirlineName",
+              "active": true
             }
           ]
         },
@@ -50,35 +51,6 @@
         }
       }
     },
-    "drillFilterOtherVisuals": true,
-    "objects": {
-      "title": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Retard moyen par compagnie'"
-                }
-              }
-            },
-            "titleWrap": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ]
-    }
+    "drillFilterOtherVisuals": true
   }
 }

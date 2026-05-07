@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
   "name": "aa000000000000000003",
   "position": {
-    "x": 320,
-    "y": 65,
-    "z": 2,
-    "height": 120,
-    "width": 280
+    "x": 20.418743768693918,
+    "y": 65.793729921347065,
+    "z": 1000,
+    "height": 120.24371330453084,
+    "width": 578.5310734463277
   },
   "visual": {
     "visualType": "multiRowCard",
@@ -46,35 +46,53 @@
         }
       }
     },
-    "drillFilterOtherVisuals": true,
-    "objects": {
+    "visualContainerObjects": {
       "title": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Vols opérés'"
-                }
-              }
-            },
-            "titleWrap": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             }
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "aaaa3bf4e71e489e7635",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact_Flights"
+              }
+            },
+            "Property": "Nombre de vols N a date"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "9562ff6eaaa201ad7117",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact_Flights"
+              }
+            },
+            "Property": "Signal nombre de vols"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

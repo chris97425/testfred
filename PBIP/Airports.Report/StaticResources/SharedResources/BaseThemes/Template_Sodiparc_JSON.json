@@ -1670,7 +1670,7 @@
           {
             "autoZoom": false,
             "zoom": 15,
-            "centerLatitude": -20.87749108857193,
+            "centerLatitude": -20.877491088571929,
             "centerLongitude": 55.452631998180955,
             "defaultStyle": "road",
             "showStylePicker": true,

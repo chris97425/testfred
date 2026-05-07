@@ -32,16 +32,6 @@
       "type": "SharedResources",
       "items": [
         {
-          "name": "CY26SU02",
-          "path": "BaseThemes/CY26SU02.json",
-          "type": "BaseTheme"
-        },
-        {
-          "name": "VercelDark",
-          "path": "BaseThemes/VercelDark.json",
-          "type": "BaseTheme"
-        },
-        {
           "name": "Template_Sodiparc_JSON",
           "path": "BaseThemes/Template_Sodiparc_JSON.json",
           "type": "BaseTheme"
