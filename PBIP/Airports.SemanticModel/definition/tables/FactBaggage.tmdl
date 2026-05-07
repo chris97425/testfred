@@ -1,0 +1,94 @@
+table FactBaggage
+	lineageTag: d8a704b1-8a98-46be-b948-1f3d09009259
+
+	column FlightID
+		dataType: string
+		lineageTag: a3dd25ef-08c6-45ad-8f14-b3071ffe3468
+		summarizeBy: none
+		sourceColumn: FlightID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: int64
+		formatString: 0
+		lineageTag: 9453a2dc-235d-4019-b350-56f5e9daaf4d
+		summarizeBy: sum
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column TerminalID
+		dataType: string
+		lineageTag: 0b82b8ae-7d8d-47fe-abc6-a103f7c1b97f
+		summarizeBy: none
+		sourceColumn: TerminalID
+
+		annotation SummarizationSetBy = Automatic
+
+	column BaggageBelt
+		dataType: string
+		lineageTag: 3c03531f-846a-4881-aa41-b89f944a2045
+		summarizeBy: none
+		sourceColumn: BaggageBelt
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadedBags
+		dataType: int64
+		formatString: 0
+		lineageTag: 993d92b0-8829-45b9-9384-951bbf6b6e06
+		summarizeBy: sum
+		sourceColumn: LoadedBags
+
+		annotation SummarizationSetBy = Automatic
+
+	column MishandledBags
+		dataType: int64
+		formatString: 0
+		lineageTag: 8df7a2fb-dad7-403f-a676-162570abebbb
+		summarizeBy: sum
+		sourceColumn: MishandledBags
+
+		annotation SummarizationSetBy = Automatic
+
+	column FirstBagMin
+		dataType: int64
+		formatString: 0
+		lineageTag: 02e454fb-ed60-4f35-9cf1-13de8c029332
+		summarizeBy: sum
+		sourceColumn: FirstBagMin
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastBagMin
+		dataType: int64
+		formatString: 0
+		lineageTag: 3a7b74df-54e6-4bed-be06-44602820a7af
+		summarizeBy: sum
+		sourceColumn: LastBagMin
+
+		annotation SummarizationSetBy = Automatic
+
+	column BaggageSLACompliance
+		dataType: string
+		lineageTag: 16b8668f-1934-4658-96be-6f97c229353e
+		summarizeBy: none
+		sourceColumn: BaggageSLACompliance
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactBaggage = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\fbazin\Downloads\base_mockup_trafic_passager_aeroport_powerbi.xlsx"), null, true),
+				    FactBaggage_Table = Source{[Item="FactBaggage",Kind="Table"]}[Data],
+				    #"Type modifié" = Table.TransformColumnTypes(FactBaggage_Table,{{"FlightID", type text}, {"Date", Int64.Type}, {"TerminalID", type text}, {"BaggageBelt", type text}, {"LoadedBags", Int64.Type}, {"MishandledBags", Int64.Type}, {"FirstBagMin", Int64.Type}, {"LastBagMin", Int64.Type}, {"BaggageSLACompliance", type text}})
+				in
+				    #"Type modifié"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,59 @@
+table Dim_Checkpoint
+	lineageTag: c93dda7e-3b90-46e5-a67d-c6a7c8a2b903
+
+	column CheckpointID
+		dataType: string
+		lineageTag: b71da225-d797-425e-8634-0699185afcc6
+		summarizeBy: none
+		sourceColumn: CheckpointID
+
+		annotation SummarizationSetBy = Automatic
+
+	column TerminalID
+		dataType: string
+		lineageTag: fc4ecf86-5a6e-438a-b594-9d8f93819434
+		summarizeBy: none
+		sourceColumn: TerminalID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProcessArea
+		dataType: string
+		lineageTag: e47d7b9d-e6b9-4a93-b75c-3c2acc80b108
+		summarizeBy: none
+		sourceColumn: ProcessArea
+
+		annotation SummarizationSetBy = Automatic
+
+	column NominalCapacityPaxPerHour
+		dataType: int64
+		formatString: 0
+		lineageTag: ac9a8872-48e5-489a-9ebf-1b8d8c64c295
+		summarizeBy: sum
+		sourceColumn: NominalCapacityPaxPerHour
+
+		annotation SummarizationSetBy = Automatic
+
+	column Criticality
+		dataType: string
+		lineageTag: 78b4ebc8-c3d7-41f4-9f5c-30e00979991d
+		summarizeBy: none
+		sourceColumn: Criticality
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Checkpoint = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\fbazin\Downloads\base_mockup_trafic_passager_aeroport_powerbi.xlsx"), null, true),
+				    Dim_Checkpoint_Sheet = Source{[Item="Dim_Checkpoint",Kind="Sheet"]}[Data],
+				    #"En-têtes promus" = Table.PromoteHeaders(Dim_Checkpoint_Sheet, [PromoteAllScalars=true]),
+				    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"CheckpointID", type text}, {"TerminalID", type text}, {"ProcessArea", type text}, {"NominalCapacityPaxPerHour", Int64.Type}, {"Criticality", type text}})
+				in
+				    #"Type modifié"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

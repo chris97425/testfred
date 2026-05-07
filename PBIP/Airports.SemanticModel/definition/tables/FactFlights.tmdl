@@ -1,0 +1,146 @@
+table FactFlights
+	lineageTag: 55ae1819-8e81-4c6b-9b7b-7f304fdd2dd3
+
+	column FlightID
+		dataType: string
+		lineageTag: 6f87beb4-0f70-4d87-b721-75d17a3ab948
+		summarizeBy: none
+		sourceColumn: FlightID
+
+		annotation SummarizationSetBy = Automatic
+
+	column FlightDate
+		dataType: int64
+		formatString: 0
+		lineageTag: 05487423-4012-4ad0-aebf-bb15e1990b96
+		summarizeBy: sum
+		sourceColumn: FlightDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column ScheduledDateTime
+		dataType: double
+		lineageTag: c730d908-5e6b-49bb-9df5-34f517a70928
+		summarizeBy: sum
+		sourceColumn: ScheduledDateTime
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ActualDateTime
+		dataType: double
+		lineageTag: c6c7178c-0686-40e5-8e2e-a8eea53a47fd
+		summarizeBy: sum
+		sourceColumn: ActualDateTime
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MovementType
+		dataType: string
+		lineageTag: a5d8d90d-3ee7-4fce-8305-c32c3162a490
+		summarizeBy: none
+		sourceColumn: MovementType
+
+		annotation SummarizationSetBy = Automatic
+
+	column AirlineID
+		dataType: string
+		lineageTag: af218efa-0a48-49b7-94eb-b77fcbf5b471
+		summarizeBy: none
+		sourceColumn: AirlineID
+
+		annotation SummarizationSetBy = Automatic
+
+	column RouteID
+		dataType: string
+		lineageTag: 53b3782e-9ac5-4bd6-93e2-88c863b2d740
+		summarizeBy: none
+		sourceColumn: RouteID
+
+		annotation SummarizationSetBy = Automatic
+
+	column TerminalID
+		dataType: string
+		lineageTag: 829718a3-04de-4260-b158-6d227f4a9653
+		summarizeBy: none
+		sourceColumn: TerminalID
+
+		annotation SummarizationSetBy = Automatic
+
+	column AircraftType
+		dataType: string
+		lineageTag: 2229aed1-ba4f-4266-8879-ee004f6fbf87
+		summarizeBy: none
+		sourceColumn: AircraftType
+
+		annotation SummarizationSetBy = Automatic
+
+	column SeatCapacity
+		dataType: int64
+		formatString: 0
+		lineageTag: f3d57bf4-140a-49b0-aac8-e881021981a5
+		summarizeBy: sum
+		sourceColumn: SeatCapacity
+
+		annotation SummarizationSetBy = Automatic
+
+	column PassengerCount
+		dataType: int64
+		formatString: 0
+		lineageTag: 47f7e692-b7cb-4f28-99a0-0ab3c3bc399f
+		summarizeBy: sum
+		sourceColumn: PassengerCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column FlightStatus
+		dataType: string
+		lineageTag: d8fe4339-8151-4b38-a992-8c4afdc9015a
+		summarizeBy: none
+		sourceColumn: FlightStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column DelayMinutes
+		dataType: int64
+		formatString: 0
+		lineageTag: bdd592fc-022e-4f7c-8d29-1428c8021a80
+		summarizeBy: sum
+		sourceColumn: DelayMinutes
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gate
+		dataType: int64
+		formatString: 0
+		lineageTag: e97fda0f-064d-46d0-83c3-a5a29ea64f16
+		summarizeBy: sum
+		sourceColumn: Gate
+
+		annotation SummarizationSetBy = Automatic
+
+	column BaggageBelt
+		dataType: string
+		lineageTag: c2f347e0-9612-4080-98f8-f1b3542ff793
+		summarizeBy: none
+		sourceColumn: BaggageBelt
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactFlights = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\fbazin\Downloads\base_mockup_trafic_passager_aeroport_powerbi.xlsx"), null, true),
+				    FactFlights_Table = Source{[Item="FactFlights",Kind="Table"]}[Data],
+				    #"Type modifié" = Table.TransformColumnTypes(FactFlights_Table,{{"FlightID", type text}, {"FlightDate", Int64.Type}, {"ScheduledDateTime", type number}, {"ActualDateTime", type number}, {"MovementType", type text}, {"AirlineID", type text}, {"RouteID", type text}, {"TerminalID", type text}, {"AircraftType", type text}, {"SeatCapacity", Int64.Type}, {"PassengerCount", Int64.Type}, {"FlightStatus", type text}, {"DelayMinutes", Int64.Type}, {"Gate", Int64.Type}, {"BaggageBelt", type text}})
+				in
+				    #"Type modifié"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

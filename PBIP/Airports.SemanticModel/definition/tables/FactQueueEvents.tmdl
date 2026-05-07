@@ -1,0 +1,129 @@
+table FactQueueEvents
+	lineageTag: cd767932-2993-4552-b818-334fb6d8a89e
+
+	column QueueEventID
+		dataType: string
+		lineageTag: 18de6120-e575-43e4-9393-49acbf6fca99
+		summarizeBy: none
+		sourceColumn: QueueEventID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: int64
+		formatString: 0
+		lineageTag: 07baf1ca-1430-4cc5-ab4b-062a2a1a03e4
+		summarizeBy: sum
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hour
+		dataType: int64
+		formatString: 0
+		lineageTag: c42eb983-b868-4016-9ab6-6075b2417997
+		summarizeBy: sum
+		sourceColumn: Hour
+
+		annotation SummarizationSetBy = Automatic
+
+	column CheckpointID
+		dataType: string
+		lineageTag: 77918b07-30d8-442e-828f-13e976774ebf
+		summarizeBy: none
+		sourceColumn: CheckpointID
+
+		annotation SummarizationSetBy = Automatic
+
+	column TerminalID
+		dataType: string
+		lineageTag: 7f10856a-5415-4f64-a544-51a915730cf2
+		summarizeBy: none
+		sourceColumn: TerminalID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProcessArea
+		dataType: string
+		lineageTag: ba52391d-33b6-499b-99ae-a4d4a06e21d8
+		summarizeBy: none
+		sourceColumn: ProcessArea
+
+		annotation SummarizationSetBy = Automatic
+
+	column ArrivalRatePaxH
+		dataType: int64
+		formatString: 0
+		lineageTag: 9704d8b1-47bb-468f-8f6a-e7d0dfa2df39
+		summarizeBy: sum
+		sourceColumn: ArrivalRatePaxH
+
+		annotation SummarizationSetBy = Automatic
+
+	column ServiceRatePaxH
+		dataType: int64
+		formatString: 0
+		lineageTag: 1517e02c-b3fb-4d68-a458-c716a1deda25
+		summarizeBy: sum
+		sourceColumn: ServiceRatePaxH
+
+		annotation SummarizationSetBy = Automatic
+
+	column OpenLanes
+		dataType: int64
+		formatString: 0
+		lineageTag: 91fe4a6d-cec1-4a0c-a946-e0ab62b8922e
+		summarizeBy: sum
+		sourceColumn: OpenLanes
+
+		annotation SummarizationSetBy = Automatic
+
+	column QueueLengthPax
+		dataType: int64
+		formatString: 0
+		lineageTag: 919e0fba-9f80-410d-8a38-b1afa5a1f14a
+		summarizeBy: sum
+		sourceColumn: QueueLengthPax
+
+		annotation SummarizationSetBy = Automatic
+
+	column AvgWaitMin
+		dataType: int64
+		formatString: 0
+		lineageTag: 0c8dfe5e-5d06-4c95-bb27-e45470e54830
+		summarizeBy: sum
+		sourceColumn: AvgWaitMin
+
+		annotation SummarizationSetBy = Automatic
+
+	column SLAMin
+		dataType: int64
+		formatString: 0
+		lineageTag: f6e44f20-47c0-4ac9-9232-3115bb0c959a
+		summarizeBy: sum
+		sourceColumn: SLAMin
+
+		annotation SummarizationSetBy = Automatic
+
+	column SLACompliance
+		dataType: string
+		lineageTag: 7a9618fc-74c0-4cd3-9564-93967849d8d7
+		summarizeBy: none
+		sourceColumn: SLACompliance
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactQueueEvents = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\fbazin\Downloads\base_mockup_trafic_passager_aeroport_powerbi.xlsx"), null, true),
+				    FactQueueEvents_Table = Source{[Item="FactQueueEvents",Kind="Table"]}[Data],
+				    #"Type modifié" = Table.TransformColumnTypes(FactQueueEvents_Table,{{"QueueEventID", type text}, {"Date", Int64.Type}, {"Hour", Int64.Type}, {"CheckpointID", type text}, {"TerminalID", type text}, {"ProcessArea", type text}, {"ArrivalRatePaxH", Int64.Type}, {"ServiceRatePaxH", Int64.Type}, {"OpenLanes", Int64.Type}, {"QueueLengthPax", Int64.Type}, {"AvgWaitMin", Int64.Type}, {"SLAMin", Int64.Type}, {"SLACompliance", type text}})
+				in
+				    #"Type modifié"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

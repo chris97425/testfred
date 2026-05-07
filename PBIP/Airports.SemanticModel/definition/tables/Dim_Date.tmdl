@@ -1,0 +1,105 @@
+table Dim_Date
+	lineageTag: dad80179-81b2-49bd-8635-186ada841ff2
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a8aa7576-3a1d-4744-81c8-e2567575f88d
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: 94844e33-5a32-472d-9030-9c2927387a37
+			defaultHierarchy: LocalDateTable_a1d83bad-09f1-4214-8a33-b1e4dcd0a7b2.'Hiérarchie de dates'
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 6af3dcf7-a024-42ba-9d0e-e3e41ec354a7
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNo
+		dataType: int64
+		formatString: 0
+		lineageTag: a92bddd2-bd55-4b47-b6ac-3a07491f3d2d
+		summarizeBy: sum
+		sourceColumn: MonthNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthName
+		dataType: string
+		lineageTag: 86d72a21-34dd-46ff-a3ef-a41093fb2a12
+		summarizeBy: none
+		sourceColumn: MonthName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ISOWeek
+		dataType: int64
+		formatString: 0
+		lineageTag: 11e77033-4cc4-4384-9c00-73436583115f
+		summarizeBy: sum
+		sourceColumn: ISOWeek
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		dataType: int64
+		formatString: 0
+		lineageTag: 02e7858f-b980-4bd1-8a90-e8f3908ed604
+		summarizeBy: sum
+		sourceColumn: Day
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayName
+		dataType: string
+		lineageTag: 99dccb31-19c7-44fc-956f-b4e8fbee5f13
+		summarizeBy: none
+		sourceColumn: DayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsWeekend
+		dataType: int64
+		formatString: 0
+		lineageTag: 6829bd73-e6b6-424c-b123-49ab130f72ad
+		summarizeBy: sum
+		sourceColumn: IsWeekend
+
+		annotation SummarizationSetBy = Automatic
+
+	column Seasonality
+		dataType: string
+		lineageTag: c9ce1089-6f93-4649-b33c-bddc198d7eb7
+		summarizeBy: none
+		sourceColumn: Seasonality
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Date = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\fbazin\Downloads\base_mockup_trafic_passager_aeroport_powerbi.xlsx"), null, true),
+				    Dim_Date_Sheet = Source{[Item="Dim_Date",Kind="Sheet"]}[Data],
+				    #"En-têtes promus" = Table.PromoteHeaders(Dim_Date_Sheet, [PromoteAllScalars=true]),
+				    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"Date", Int64.Type}, {"Year", Int64.Type}, {"MonthNo", Int64.Type}, {"MonthName", type text}, {"ISOWeek", Int64.Type}, {"Day", Int64.Type}, {"DayName", type text}, {"IsWeekend", Int64.Type}, {"Seasonality", type text}})
+				in
+				    #"Type modifié"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

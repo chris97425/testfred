@@ -1,0 +1,401 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 50
+          },
+          "nodeIndex": "Dim_Airline",
+          "nodeLineageTag": "e45d9894-934b-4a9a-b733-59a2ed313c3f",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 284,
+            "y": 50
+          },
+          "nodeIndex": "Dim_Checkpoint",
+          "nodeLineageTag": "c93dda7e-3b90-46e5-a67d-c6a7c8a2b903",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 568,
+            "y": 2
+          },
+          "nodeIndex": "Dim_Date",
+          "nodeLineageTag": "dad80179-81b2-49bd-8635-186ada841ff2",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 852,
+            "y": 50
+          },
+          "nodeIndex": "Dim_Resource",
+          "nodeLineageTag": "8f395e9a-d9c5-4cc4-a6cc-9acf401b6d9c",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1136,
+            "y": 26
+          },
+          "nodeIndex": "Dim_Route",
+          "nodeLineageTag": "7a5ae841-1851-412e-9106-6f0ebafaadca",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1420,
+            "y": 2
+          },
+          "nodeIndex": "Dim_Terminal",
+          "nodeLineageTag": "039f8174-aaf5-4b5c-b6bd-3394ae319244",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1704,
+            "y": 50
+          },
+          "nodeIndex": "DimAirline",
+          "nodeLineageTag": "e5b1c24a-c06e-4496-8742-532fb8fa430d",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1988,
+            "y": 50
+          },
+          "nodeIndex": "DimCheckpoint",
+          "nodeLineageTag": "2703fe60-4c6e-418f-aead-fbfb63260e36",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2272,
+            "y": 2
+          },
+          "nodeIndex": "DimDate",
+          "nodeLineageTag": "cc2bafc5-59ae-41a6-b44e-a1560711278b",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2556,
+            "y": 50
+          },
+          "nodeIndex": "DimResource",
+          "nodeLineageTag": "d0430ea4-7357-4440-8a94-054e26fe4c19",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2840,
+            "y": 26
+          },
+          "nodeIndex": "DimRoute",
+          "nodeLineageTag": "034e48e4-dce0-4608-bee5-291451446db1",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3124,
+            "y": 2
+          },
+          "nodeIndex": "DimTerminal",
+          "nodeLineageTag": "217f44ea-b822-4e41-bdc3-d3d7eda05f3b",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3408,
+            "y": 2
+          },
+          "nodeIndex": "Fact_Baggage",
+          "nodeLineageTag": "b420b371-62bf-49d6-9778-e920c49de95b",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3692,
+            "y": 0
+          },
+          "nodeIndex": "Fact_Flights",
+          "nodeLineageTag": "558127e2-f5aa-4834-a37b-e31029e1baf8",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3976,
+            "y": 0
+          },
+          "nodeIndex": "Fact_Incidents",
+          "nodeLineageTag": "3465d3c7-a5d6-4fda-99cd-609e195e3ef2",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 4260,
+            "y": 26
+          },
+          "nodeIndex": "Fact_PaxFlow_Hourly",
+          "nodeLineageTag": "deeecef8-e522-4340-9a69-2c0e8000cace",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 4544,
+            "y": 0
+          },
+          "nodeIndex": "Fact_QueueEvents",
+          "nodeLineageTag": "ffd7d959-8647-41e4-80a9-1e1865e72007",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 4828,
+            "y": 2
+          },
+          "nodeIndex": "FactBaggage",
+          "nodeLineageTag": "d8a704b1-8a98-46be-b948-1f3d09009259",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 5112,
+            "y": 0
+          },
+          "nodeIndex": "FactFlights",
+          "nodeLineageTag": "55ae1819-8e81-4c6b-9b7b-7f304fdd2dd3",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 5396,
+            "y": 0
+          },
+          "nodeIndex": "FactIncidents",
+          "nodeLineageTag": "d29da44c-df30-43a0-8e20-d5d6b89b2388",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 5680,
+            "y": 26
+          },
+          "nodeIndex": "FactPaxFlowHourly",
+          "nodeLineageTag": "20791950-3690-4eb6-bf1a-9422cdd201b8",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 5964,
+            "y": 0
+          },
+          "nodeIndex": "FactQueueEvents",
+          "nodeLineageTag": "cd767932-2993-4552-b818-334fb6d8a89e",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Toutes les tables",
+      "zoomValue": 63.287087723234059,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 1,
+      "scrollPosition": {
+        "x": 0,
+        "y": 356.79998779296875
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 57.200000762939453,
+            "y": 21
+          },
+          "nodeIndex": "Dim_Airline",
+          "nodeLineageTag": "e45d9894-934b-4a9a-b733-59a2ed313c3f",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 407.20000076293945,
+            "y": 13
+          },
+          "nodeIndex": "Dim_Date",
+          "nodeLineageTag": "dad80179-81b2-49bd-8635-186ada841ff2",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 154.20000076293945,
+            "y": 391
+          },
+          "nodeIndex": "Fact_Flights",
+          "nodeLineageTag": "558127e2-f5aa-4834-a37b-e31029e1baf8",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 439.20000076293945,
+            "y": 426.40000152587891
+          },
+          "nodeIndex": "Fact_PaxFlow_Hourly",
+          "nodeLineageTag": "deeecef8-e522-4340-9a69-2c0e8000cace",
+          "size": {
+            "height": 284,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 660.20000076293945,
+            "y": 119.40000152587891
+          },
+          "nodeIndex": "Dim_Terminal",
+          "nodeLineageTag": "039f8174-aaf5-4b5c-b6bd-3394ae319244",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 584.19999694824219
+          },
+          "nodeIndex": "Fact_Incidents",
+          "nodeLineageTag": "3465d3c7-a5d6-4fda-99cd-609e195e3ef2",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Disposition 1",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Disposition 1",
+  "defaultDiagram": "Toutes les tables"
+}

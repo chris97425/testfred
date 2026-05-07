@@ -1,0 +1,41 @@
+model Model
+	culture: fr-FR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: fr-FR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["DimAirline","DimCheckpoint","DimDate","DimResource","DimRoute","DimTerminal","FactBaggage","FactFlights","FactIncidents","FactPaxFlowHourly","FactQueueEvents","Dim_Airline","Dim_Checkpoint","Dim_Date","Dim_Resource","Dim_Route","Dim_Terminal","Fact_Baggage","Fact_Flights","Fact_Incidents","Fact_PaxFlow_Hourly","Fact_QueueEvents"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table DimAirline
+ref table DimCheckpoint
+ref table DimDate
+ref table DimResource
+ref table DimRoute
+ref table DimTerminal
+ref table FactBaggage
+ref table FactFlights
+ref table FactIncidents
+ref table FactPaxFlowHourly
+ref table FactQueueEvents
+ref table Dim_Airline
+ref table Dim_Checkpoint
+ref table Dim_Date
+ref table Dim_Resource
+ref table Dim_Route
+ref table Dim_Terminal
+ref table Fact_Baggage
+ref table Fact_Flights
+ref table Fact_Incidents
+ref table Fact_PaxFlow_Hourly
+ref table Fact_QueueEvents
+ref table DateTableTemplate_2d0a65b8-ad45-43b2-9f1e-95103bdc180f
+ref table LocalDateTable_a1d83bad-09f1-4214-8a33-b1e4dcd0a7b2
+
+ref cultureInfo fr-FR
+

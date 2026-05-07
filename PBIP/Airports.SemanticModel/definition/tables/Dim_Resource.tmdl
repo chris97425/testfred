@@ -1,0 +1,59 @@
+table Dim_Resource
+	lineageTag: 8f395e9a-d9c5-4cc4-a6cc-9acf401b6d9c
+
+	column ResourcePoolID
+		dataType: string
+		lineageTag: 7fb5725a-f1a7-4481-bd96-f6b353aecc39
+		summarizeBy: none
+		sourceColumn: ResourcePoolID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Role
+		dataType: string
+		lineageTag: 24206226-a875-486a-9598-eab5c4bcedf8
+		summarizeBy: none
+		sourceColumn: Role
+
+		annotation SummarizationSetBy = Automatic
+
+	column Shift
+		dataType: string
+		lineageTag: 350ca7fd-309d-4c99-915e-76eee6389178
+		summarizeBy: none
+		sourceColumn: Shift
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlannedHeadcount
+		dataType: int64
+		formatString: 0
+		lineageTag: fe4858fa-3905-41ad-9d50-e9fd2cab35f4
+		summarizeBy: sum
+		sourceColumn: PlannedHeadcount
+
+		annotation SummarizationSetBy = Automatic
+
+	column Department
+		dataType: string
+		lineageTag: b428b72b-ccc0-4c93-a9f8-dcd9d058028c
+		summarizeBy: none
+		sourceColumn: Department
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Resource = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\fbazin\Downloads\base_mockup_trafic_passager_aeroport_powerbi.xlsx"), null, true),
+				    Dim_Resource_Sheet = Source{[Item="Dim_Resource",Kind="Sheet"]}[Data],
+				    #"En-têtes promus" = Table.PromoteHeaders(Dim_Resource_Sheet, [PromoteAllScalars=true]),
+				    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"ResourcePoolID", type text}, {"Role", type text}, {"Shift", type text}, {"PlannedHeadcount", Int64.Type}, {"Department", type text}})
+				in
+				    #"Type modifié"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

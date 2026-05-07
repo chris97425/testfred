@@ -1,0 +1,198 @@
+table DimAirline
+	lineageTag: e5b1c24a-c06e-4496-8742-532fb8fa430d
+
+	measure 'Sparkline Trafic Passagers SVG' =
+			
+			VAR LineColour = "%23118DFF"
+			VAR PointColour = "white"
+			
+			VAR Defs =
+			"<defs>
+			    <linearGradient id='grad' x1='0' y1='25' x2='0' y2='50' gradientUnits='userSpaceOnUse'>
+			        <stop stop-color='%23118DFF' offset='0' />
+			        <stop stop-color='%23118DFF' offset='0.3' />
+			        <stop stop-color='white' offset='1' />
+			    </linearGradient>
+			</defs>"
+			
+			VAR XMinDate =
+			    MINX(
+			        ALLSELECTED('Dim_Date'[Date]),
+			        'Dim_Date'[Date]
+			    )
+			
+			VAR XMaxDate =
+			    MAXX(
+			        ALLSELECTED('Dim_Date'[Date]),
+			        'Dim_Date'[Date]
+			    )
+			
+			VAR SparklineTableBase =
+			    ADDCOLUMNS(
+			        ALLSELECTED('Dim_Date'[Date]),
+			        "PaxValue", CALCULATE([Total Passagers])
+			    )
+			
+			VAR YMinValue =
+			    MINX(
+			        SparklineTableBase,
+			        [PaxValue]
+			    )
+			
+			VAR YMaxValue =
+			    MAXX(
+			        SparklineTableBase,
+			        [PaxValue]
+			    )
+			
+			VAR SparklineTable =
+			    ADDCOLUMNS(
+			        SparklineTableBase,
+			        "X",
+			            INT(
+			                150 *
+			                DIVIDE(
+			                    'Dim_Date'[Date] - XMinDate,
+			                    XMaxDate - XMinDate,
+			                    0
+			                )
+			            ),
+			        "Y",
+			            INT(
+			                50 *
+			                DIVIDE(
+			                    [PaxValue] - YMinValue,
+			                    YMaxValue - YMinValue,
+			                    0
+			                )
+			            )
+			    )
+			
+			VAR Lines =
+			    CONCATENATEX(
+			        SparklineTable,
+			        [X] & "," & 50 - [Y],
+			        " ",
+			        'Dim_Date'[Date],
+			        ASC
+			    )
+			
+			VAR LastDateWithData =
+			    MAXX(
+			        FILTER(
+			            SparklineTable,
+			            NOT ISBLANK([PaxValue])
+			        ),
+			        'Dim_Date'[Date]
+			    )
+			
+			VAR LastSparkYValue =
+			    MAXX(
+			        FILTER(
+			            SparklineTable,
+			            'Dim_Date'[Date] = LastDateWithData
+			        ),
+			        [Y]
+			    )
+			
+			VAR LastSparkXValue =
+			    MAXX(
+			        FILTER(
+			            SparklineTable,
+			            'Dim_Date'[Date] = LastDateWithData
+			        ),
+			        [X]
+			    )
+			
+			VAR SVGImageURL =
+			    "data:image/svg+xml;utf8," &
+			    "<svg xmlns='http://www.w3.org/2000/svg' viewBox='-7 -7 164 64'>" &
+			        Defs &
+			        "<polyline fill='url(%23grad)' fill-opacity='0.3' stroke='transparent' stroke-width='0' points='0 50 " &
+			            Lines &
+			            " 150 50 Z' />" &
+			        "<polyline fill='transparent' stroke='" &
+			            LineColour &
+			            "' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' points='" &
+			            Lines &
+			            "' />" &
+			        "<circle cx='" &
+			            LastSparkXValue &
+			            "' cy='" &
+			            50 - LastSparkYValue &
+			            "' r='4' stroke='" &
+			            LineColour &
+			            "' stroke-width='3' fill='" &
+			            PointColour &
+			            "' />" &
+			    "</svg>"
+			
+			RETURN
+			    IF(
+			        ISBLANK([Total Passagers]) || ISBLANK(Lines),
+			        BLANK(),
+			        SVGImageURL
+			    )
+		lineageTag: a8f3032e-5652-4316-ad2d-3a944c3f9f55
+		dataCategory: ImageUrl
+
+	measure 'Total Passagers' =
+			
+			COUNTROWS(Fact_Incidents)
+		formatString: 0
+		lineageTag: 54caf8f7-80b8-48e2-a56c-0eb949c52f92
+
+	column AirlineID
+		dataType: string
+		lineageTag: af8628fd-23d9-4d42-9fe4-7510aeef5fb3
+		summarizeBy: none
+		sourceColumn: AirlineID
+
+		annotation SummarizationSetBy = Automatic
+
+	column AirlineName
+		dataType: string
+		lineageTag: fe66f84a-d052-48cf-9d78-6a3afc7cf3b3
+		summarizeBy: none
+		sourceColumn: AirlineName
+
+		annotation SummarizationSetBy = Automatic
+
+	column BusinessModel
+		dataType: string
+		lineageTag: 1b3e224c-7187-4e00-9242-993dce1321cc
+		summarizeBy: none
+		sourceColumn: BusinessModel
+
+		annotation SummarizationSetBy = Automatic
+
+	column Alliance
+		dataType: string
+		lineageTag: dd7ea36f-5399-4efa-88f3-12e5824375e8
+		summarizeBy: none
+		sourceColumn: Alliance
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 24a540e9-a23f-43f2-8629-9f67c600b244
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimAirline = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\fbazin\Downloads\base_mockup_trafic_passager_aeroport_powerbi.xlsx"), null, true),
+				    DimAirline_Table = Source{[Item="DimAirline",Kind="Table"]}[Data],
+				    #"Type modifié" = Table.TransformColumnTypes(DimAirline_Table,{{"AirlineID", type text}, {"AirlineName", type text}, {"BusinessModel", type text}, {"Alliance", type text}, {"Country", type text}})
+				in
+				    #"Type modifié"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

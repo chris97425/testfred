@@ -1,0 +1,74 @@
+table DimRoute
+	lineageTag: 034e48e4-dce0-4608-bee5-291451446db1
+
+	column RouteID
+		dataType: string
+		lineageTag: dfbe4c5e-3dcf-46af-bcc8-40159e11f547
+		summarizeBy: none
+		sourceColumn: RouteID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Origin
+		dataType: string
+		lineageTag: 4ac30ed1-5493-45ee-8833-115b26cd0cab
+		summarizeBy: none
+		sourceColumn: Origin
+
+		annotation SummarizationSetBy = Automatic
+
+	column Destination
+		dataType: string
+		lineageTag: 54007a30-18ab-4c24-a30c-337014fc41cd
+		summarizeBy: none
+		sourceColumn: Destination
+
+		annotation SummarizationSetBy = Automatic
+
+	column HaulType
+		dataType: string
+		lineageTag: 95c6cb33-034f-483d-b50a-f879c28168e1
+		summarizeBy: none
+		sourceColumn: HaulType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Market
+		dataType: string
+		lineageTag: 97170b54-488b-4311-a64d-17242c444de9
+		summarizeBy: none
+		sourceColumn: Market
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 69140138-9414-41c1-a5c7-424368b1a8b2
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column DistanceKm
+		dataType: int64
+		formatString: 0
+		lineageTag: 898d12c3-b971-49f7-832f-d2a3dcc16c75
+		summarizeBy: sum
+		sourceColumn: DistanceKm
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimRoute = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\fbazin\Downloads\base_mockup_trafic_passager_aeroport_powerbi.xlsx"), null, true),
+				    DimRoute_Table = Source{[Item="DimRoute",Kind="Table"]}[Data],
+				    #"Type modifié" = Table.TransformColumnTypes(DimRoute_Table,{{"RouteID", type text}, {"Origin", type text}, {"Destination", type text}, {"HaulType", type text}, {"Market", type text}, {"Region", type text}, {"DistanceKm", Int64.Type}})
+				in
+				    #"Type modifié"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

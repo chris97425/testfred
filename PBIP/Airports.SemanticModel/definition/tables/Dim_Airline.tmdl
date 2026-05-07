@@ -1,0 +1,58 @@
+table Dim_Airline
+	lineageTag: e45d9894-934b-4a9a-b733-59a2ed313c3f
+
+	column AirlineID
+		dataType: string
+		lineageTag: 15986ad7-b35b-4fbe-b864-6e6cbf1cd482
+		summarizeBy: none
+		sourceColumn: AirlineID
+
+		annotation SummarizationSetBy = Automatic
+
+	column AirlineName
+		dataType: string
+		lineageTag: f3134c38-dd7e-491b-8048-a18625d486b8
+		summarizeBy: none
+		sourceColumn: AirlineName
+
+		annotation SummarizationSetBy = Automatic
+
+	column BusinessModel
+		dataType: string
+		lineageTag: 5e97fd5c-02b6-440f-a4a2-bf90e4e603e4
+		summarizeBy: none
+		sourceColumn: BusinessModel
+
+		annotation SummarizationSetBy = Automatic
+
+	column Alliance
+		dataType: string
+		lineageTag: 97bc22ba-94de-4cc2-bfaa-46dabc38ea16
+		summarizeBy: none
+		sourceColumn: Alliance
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 3404b416-d092-4f85-83cc-dffcfb02e4f2
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Airline = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\fbazin\Downloads\base_mockup_trafic_passager_aeroport_powerbi.xlsx"), null, true),
+				    Dim_Airline_Sheet = Source{[Item="Dim_Airline",Kind="Sheet"]}[Data],
+				    #"En-têtes promus" = Table.PromoteHeaders(Dim_Airline_Sheet, [PromoteAllScalars=true]),
+				    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"AirlineID", type text}, {"AirlineName", type text}, {"BusinessModel", type text}, {"Alliance", type text}, {"Country", type text}})
+				in
+				    #"Type modifié"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

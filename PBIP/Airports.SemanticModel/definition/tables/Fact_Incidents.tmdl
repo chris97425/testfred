@@ -1,0 +1,102 @@
+table Fact_Incidents
+	lineageTag: 3465d3c7-a5d6-4fda-99cd-609e195e3ef2
+
+	column IncidentID
+		dataType: string
+		lineageTag: 9e82d911-ce3b-4640-b3d9-0a52287d1683
+		summarizeBy: none
+		sourceColumn: IncidentID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: int64
+		formatString: 0
+		lineageTag: 2780c63f-4bc4-4576-af67-19d2aa205287
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hour
+		dataType: int64
+		formatString: 0
+		lineageTag: e5b31dab-4670-400a-b952-de4deed75c57
+		summarizeBy: sum
+		sourceColumn: Hour
+
+		annotation SummarizationSetBy = Automatic
+
+	column TerminalID
+		dataType: string
+		lineageTag: a9309871-36f0-49c9-9189-978cc0ef32dc
+		summarizeBy: none
+		sourceColumn: TerminalID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProcessArea
+		dataType: string
+		lineageTag: 44953889-669f-4fa8-b56f-62f1b827b356
+		summarizeBy: none
+		sourceColumn: ProcessArea
+
+		annotation SummarizationSetBy = Automatic
+
+	column IncidentType
+		dataType: string
+		lineageTag: 35c8607b-e31b-45f6-af51-ce090441f30a
+		summarizeBy: none
+		sourceColumn: IncidentType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Severity
+		dataType: string
+		lineageTag: b9b5c25a-4056-4f5c-8195-65e366a6948a
+		summarizeBy: none
+		sourceColumn: Severity
+
+		annotation SummarizationSetBy = Automatic
+
+	column DurationMin
+		dataType: int64
+		formatString: 0
+		lineageTag: f6ee5729-36c2-4c9c-8e57-34fc1b17a8de
+		summarizeBy: sum
+		sourceColumn: DurationMin
+
+		annotation SummarizationSetBy = Automatic
+
+	column PassengerImpacted
+		dataType: int64
+		formatString: 0
+		lineageTag: a0aa4d37-d912-4103-8faf-e48a25b2d91c
+		summarizeBy: sum
+		sourceColumn: PassengerImpacted
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 975794e1-65b5-4ce6-9f1b-23ed78c5ccfc
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fact_Incidents = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\fbazin\Downloads\base_mockup_trafic_passager_aeroport_powerbi.xlsx"), null, true),
+				    Fact_Incidents_Sheet = Source{[Item="Fact_Incidents",Kind="Sheet"]}[Data],
+				    #"En-têtes promus" = Table.PromoteHeaders(Fact_Incidents_Sheet, [PromoteAllScalars=true]),
+				    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"IncidentID", type text}, {"Date", Int64.Type}, {"Hour", Int64.Type}, {"TerminalID", type text}, {"ProcessArea", type text}, {"IncidentType", type text}, {"Severity", type text}, {"DurationMin", Int64.Type}, {"PassengerImpacted", Int64.Type}, {"Status", type text}})
+				in
+				    #"Type modifié"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,101 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "378e7fc0a02c3291b84c",
+  "position": {
+    "x": 126.06060606060606,
+    "y": 246.30303030303031,
+    "z": 0,
+    "height": 473.21212121212119,
+    "width": 1107.3939393939395
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimTerminal"
+                    }
+                  },
+                  "Property": "TerminalID"
+                }
+              },
+              "queryRef": "DimTerminal.TerminalID",
+              "nativeQueryRef": "TerminalID"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimAirline"
+                    }
+                  },
+                  "Property": "Sparkline Trafic Passagers SVG"
+                }
+              },
+              "queryRef": "DimAirline.Sparkline Trafic Passagers SVG",
+              "nativeQueryRef": "Sparkline Trafic Passagers SVG"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "678.6666666666667D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DimAirline.Sparkline Trafic Passagers SVG"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "c507798e5b07a514726c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimAirline"
+              }
+            },
+            "Property": "Sparkline Trafic Passagers SVG"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "a1be99d844fe35394989",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimTerminal"
+              }
+            },
+            "Property": "TerminalID"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

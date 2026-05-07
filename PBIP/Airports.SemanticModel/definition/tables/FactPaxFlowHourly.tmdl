@@ -1,0 +1,79 @@
+table FactPaxFlowHourly
+	lineageTag: 20791950-3690-4eb6-bf1a-9422cdd201b8
+
+	column Date
+		dataType: int64
+		formatString: 0
+		lineageTag: 1209b929-7a44-41b2-90d7-795141a17818
+		summarizeBy: sum
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hour
+		dataType: int64
+		formatString: 0
+		lineageTag: ac8f2bc0-74ab-4351-9d7c-5538b11b80f2
+		summarizeBy: sum
+		sourceColumn: Hour
+
+		annotation SummarizationSetBy = Automatic
+
+	column TerminalID
+		dataType: string
+		lineageTag: bedbd7ea-a00c-436c-b630-c65b6ebea6cc
+		summarizeBy: none
+		sourceColumn: TerminalID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DepartingPax
+		dataType: int64
+		formatString: 0
+		lineageTag: 7de1c2dd-c22a-4aef-9c06-b3e3b981ef4c
+		summarizeBy: sum
+		sourceColumn: DepartingPax
+
+		annotation SummarizationSetBy = Automatic
+
+	column ArrivingPax
+		dataType: int64
+		formatString: 0
+		lineageTag: 8ca89521-2dad-4489-b437-fce1e92bf650
+		summarizeBy: sum
+		sourceColumn: ArrivingPax
+
+		annotation SummarizationSetBy = Automatic
+
+	column TransferPax
+		dataType: int64
+		formatString: 0
+		lineageTag: 794108e5-4c95-45fc-aabd-fbf566e725de
+		summarizeBy: sum
+		sourceColumn: TransferPax
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalPax
+		dataType: int64
+		formatString: 0
+		lineageTag: 970923da-8325-43a6-9eae-52340c149099
+		summarizeBy: sum
+		sourceColumn: TotalPax
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactPaxFlowHourly = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\fbazin\Downloads\base_mockup_trafic_passager_aeroport_powerbi.xlsx"), null, true),
+				    FactPaxFlowHourly_Table = Source{[Item="FactPaxFlowHourly",Kind="Table"]}[Data],
+				    #"Type modifié" = Table.TransformColumnTypes(FactPaxFlowHourly_Table,{{"Date", Int64.Type}, {"Hour", Int64.Type}, {"TerminalID", type text}, {"DepartingPax", Int64.Type}, {"ArrivingPax", Int64.Type}, {"TransferPax", Int64.Type}, {"TotalPax", Int64.Type}})
+				in
+				    #"Type modifié"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

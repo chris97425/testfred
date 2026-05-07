@@ -1,0 +1,29 @@
+relationship 7786a7db-5122-46f5-faf2-d3eaa1ad6c7a
+	fromColumn: Fact_Flights.AirlineID
+	toColumn: Dim_Airline.AirlineID
+
+relationship 67a7bafb-0de1-6bf3-6519-413696380905
+	fromColumn: Fact_Flights.FlightDate
+	toColumn: Dim_Date.Date
+
+relationship 9909b79d-065d-0cd4-376b-cdaaf1428346
+	fromColumn: Fact_PaxFlow_Hourly.Date
+	toColumn: Dim_Date.Date
+
+relationship f9483555-dbf9-9282-2296-145d12b91dc1
+	fromColumn: Fact_PaxFlow_Hourly.TerminalID
+	toColumn: Dim_Terminal.TerminalID
+
+relationship 94844e33-5a32-472d-9030-9c2927387a37
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Dim_Date.Date
+	toColumn: LocalDateTable_a1d83bad-09f1-4214-8a33-b1e4dcd0a7b2.Date
+
+relationship f22a3bbe-02ab-387f-d35c-c5f4b95596dc
+	fromColumn: Fact_Incidents.TerminalID
+	toColumn: Dim_Terminal.TerminalID
+
+relationship 43e738ee-e1b9-61bc-61db-98833dd65a53
+	fromColumn: Fact_Incidents.Date
+	toColumn: Dim_Date.Date
+

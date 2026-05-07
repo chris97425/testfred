@@ -1,0 +1,95 @@
+table DimTerminal
+	lineageTag: 217f44ea-b822-4e41-bdc3-d3d7eda05f3b
+
+	column TerminalID
+		dataType: string
+		lineageTag: 635b4209-7172-4198-9044-1dc7e5fa5d44
+		summarizeBy: none
+		sourceColumn: TerminalID
+
+		annotation SummarizationSetBy = Automatic
+
+	column TerminalName
+		dataType: string
+		lineageTag: a8d67f96-8335-4adb-9c7b-3d15d7e27c77
+		summarizeBy: none
+		sourceColumn: TerminalName
+
+		annotation SummarizationSetBy = Automatic
+
+	column TerminalType
+		dataType: string
+		lineageTag: 104a7aec-c09e-46be-b1cb-b3c36fbc54f1
+		summarizeBy: none
+		sourceColumn: TerminalType
+
+		annotation SummarizationSetBy = Automatic
+
+	column CheckinDesks
+		dataType: int64
+		formatString: 0
+		lineageTag: feb2eb52-b5f8-4ab2-9a62-63a863528580
+		summarizeBy: sum
+		sourceColumn: CheckinDesks
+
+		annotation SummarizationSetBy = Automatic
+
+	column SecurityLanes
+		dataType: int64
+		formatString: 0
+		lineageTag: b265941e-27b3-4ecc-940c-23e40274060e
+		summarizeBy: sum
+		sourceColumn: SecurityLanes
+
+		annotation SummarizationSetBy = Automatic
+
+	column BorderBooths
+		dataType: int64
+		formatString: 0
+		lineageTag: 290ac7af-c954-4cf3-889a-e0e2fe063994
+		summarizeBy: sum
+		sourceColumn: BorderBooths
+
+		annotation SummarizationSetBy = Automatic
+
+	column BoardingGates
+		dataType: int64
+		formatString: 0
+		lineageTag: 9261180b-4e33-4de9-8f4b-ac9a77229eb8
+		summarizeBy: sum
+		sourceColumn: BoardingGates
+
+		annotation SummarizationSetBy = Automatic
+
+	column BaggageBelts
+		dataType: int64
+		formatString: 0
+		lineageTag: 75131110-553d-4614-b6e6-d43001ea4fbd
+		summarizeBy: sum
+		sourceColumn: BaggageBelts
+
+		annotation SummarizationSetBy = Automatic
+
+	column RemoteStands
+		dataType: int64
+		formatString: 0
+		lineageTag: c80405eb-5996-436d-a633-1e724ec2bb15
+		summarizeBy: sum
+		sourceColumn: RemoteStands
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimTerminal = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\fbazin\Downloads\base_mockup_trafic_passager_aeroport_powerbi.xlsx"), null, true),
+				    DimTerminal_Table = Source{[Item="DimTerminal",Kind="Table"]}[Data],
+				    #"Type modifié" = Table.TransformColumnTypes(DimTerminal_Table,{{"TerminalID", type text}, {"TerminalName", type text}, {"TerminalType", type text}, {"CheckinDesks", Int64.Type}, {"SecurityLanes", Int64.Type}, {"BorderBooths", Int64.Type}, {"BoardingGates", Int64.Type}, {"BaggageBelts", Int64.Type}, {"RemoteStands", Int64.Type}})
+				in
+				    #"Type modifié"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+
