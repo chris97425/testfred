@@ -1,0 +1,78 @@
+# -----------------------------
+# Power BI PBIP
+# -----------------------------
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+*.abf
+# Optionnel : tant que les anciens rapports PBIX ne sont pas migrés
+*.pbix
+**/*.pbix
+# -----------------------------
+# OS / fichiers temporaires
+# -----------------------------
+.DS_Store
+Thumbs.db
+~$*
+*~
+*.tmp
+*.bak
+*.log
+
+# -----------------------------
+# IDE / éditeurs
+# -----------------------------
+.vs/
+.vscode/
+.idea/
+
+# -----------------------------
+# Dépendances / cache éventuels
+# -----------------------------
+node_modules/
+__pycache__/
+*.pyc
+
+*.xlsx
+*.csv
+*.pdf
+*.eml
+*.xlsm
+*.mp4
+*.zip
+*.docx
+~$*
+*.tmp
+*.temp
+*.bak
+*.old
+*.wbk
+**/AnalysisServicesWorkspace/
+**/DataMashupTraceLogs/
+**/TempSaves/
+*.pbix
+*.pbix.tmp
+*.cache
+*.dmp
+
+
+*.xls
+*.parquet
+
+## Logs
+*.log
+logs/
+
+## Os filesystem
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+desktop.ini
+
+## Vscode
+.vscode/
+.ideal/
+# Python
+__pycache__/
+*.pyc
+.venv/
