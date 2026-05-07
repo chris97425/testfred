@@ -8,7 +8,7 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_QueryOrder = ["DimAirline","DimCheckpoint","DimDate","DimResource","DimRoute","DimTerminal","FactBaggage","FactFlights","FactIncidents","FactPaxFlowHourly","FactQueueEvents","Dim_Airline","Dim_Checkpoint","Dim_Date","Dim_Resource","Dim_Route","Dim_Terminal","Fact_Baggage","Fact_Flights","Fact_Incidents","Fact_PaxFlow_Hourly","Fact_QueueEvents"]
+annotation PBI_QueryOrder = ["DimAirline","DimCheckpoint","DimDate","DimResource","DimRoute","DimTerminal","FactBaggage","FactIncidents","FactPaxFlowHourly","FactQueueEvents","Dim_Airline","Dim_Checkpoint","Dim_Date","Dim_Resource","Dim_Route","Dim_Terminal","Fact_Baggage","Fact_Flights","Fact_Incidents","Fact_PaxFlow_Hourly","Fact_QueueEvents"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
@@ -19,7 +19,6 @@ ref table DimResource
 ref table DimRoute
 ref table DimTerminal
 ref table FactBaggage
-ref table FactFlights
 ref table FactIncidents
 ref table FactPaxFlowHourly
 ref table FactQueueEvents

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "182930415263748596a7",
+  "position": {
+    "x": 640,
+    "y": 200,
+    "z": 21,
+    "height": 245,
+    "width": 560
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Airline"
+                    }
+                  },
+                  "Property": "AirlineName"
+                }
+              },
+              "queryRef": "Dim_Airline.AirlineName",
+              "nativeQueryRef": "AirlineName"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Flights"
+                    }
+                  },
+                  "Property": "Total passagers"
+                }
+              },
+              "queryRef": "Fact_Flights.Total passagers",
+              "nativeQueryRef": "Total passagers"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

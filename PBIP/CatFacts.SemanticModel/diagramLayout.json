@@ -1,0 +1,33 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 200,
+            "y": 100
+          },
+          "nodeIndex": "CatFacts",
+          "nodeLineageTag": "8f1e2d3c-4b5a-6978-90ab-cdef12340001",
+          "size": {
+            "height": 300,
+            "width": 280
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Toutes les tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ]
+}

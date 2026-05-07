@@ -1,0 +1,18 @@
+model Model
+	culture: fr-FR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: fr-FR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["CatFacts"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table CatFacts
+
+ref cultureInfo fr-FR
+

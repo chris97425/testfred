@@ -1,6 +1,76 @@
 table Fact_Flights
 	lineageTag: 558127e2-f5aa-4834-a37b-e31029e1baf8
 
+	measure 'Total passagers' =
+			SUM(Fact_Flights[PassengerCount])
+		formatString: 0
+		lineageTag: 221e1849-d0b8-4c4f-83dc-6c2f2f8f5f01
+
+	measure 'Capacite sieges' =
+			SUM(Fact_Flights[SeatCapacity])
+		formatString: 0
+		lineageTag: 42ae998d-5c8e-4c3e-b5d5-a3ef7fc14d65
+
+	measure 'Nombre de vols' =
+			COUNTROWS(Fact_Flights)
+		formatString: 0
+		lineageTag: 1230ac4b-61d4-478c-b565-b1979d73a002
+
+	measure 'Retard moyen (min)' =
+			AVERAGE(Fact_Flights[DelayMinutes])
+		formatString: 0.0
+		lineageTag: e8f72582-4083-47a9-b26c-cd7577387d82
+
+	measure 'Taux de remplissage' =
+			DIVIDE([Total passagers], [Capacite sieges])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 8320de46-889f-469e-9e71-9a3491e4fd9c
+
+	measure 'Vols retardes' =
+			CALCULATE([Nombre de vols], Fact_Flights[DelayMinutes] > 15)
+		formatString: 0
+		lineageTag: 6e2729a5-fb18-48bf-9c40-ecf8178cb8f8
+
+	measure 'Taux vols retardes' =
+			DIVIDE([Vols retardes], [Nombre de vols])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 8a664de7-12f8-4fd5-a4df-b5bdbe63c326
+
+	measure 'Flux passagers horaire' =
+			SUM(Fact_PaxFlow_Hourly[TotalPax])
+		formatString: 0
+		lineageTag: 9b0b3149-a7b0-48d5-ad5f-91f9bf0a1e01
+
+	measure Incidents =
+			COUNTROWS(Fact_Incidents)
+		formatString: 0
+		lineageTag: 9e5b8b60-687c-4a2c-a8fb-164430a944d0
+
+	measure 'Passagers impactes' =
+			SUM(Fact_Incidents[PassengerImpacted])
+		formatString: 0
+		lineageTag: e2871474-1687-4b87-8b65-ae1a6b07e52a
+
+	measure 'Attente moyenne (min)' =
+			AVERAGE(Fact_QueueEvents[AvgWaitMin])
+		formatString: 0.0
+		lineageTag: b2da7e4d-68cc-4044-880e-2e8b2a98936b
+
+	measure 'Bagages charges' =
+			SUM(Fact_Baggage[LoadedBags])
+		formatString: 0
+		lineageTag: db8b51dc-c650-4c37-98cd-3c096f408050
+
+	measure 'Bagages mal traites' =
+			SUM(Fact_Baggage[MishandledBags])
+		formatString: 0
+		lineageTag: d1eda74b-e68b-4e44-b942-7ea5b035fc1f
+
+	measure 'Taux bagages mal traites' =
+			DIVIDE([Bagages mal traites], [Bagages charges])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 3f6fcda0-3806-45f7-9f77-713fcf905312
+
 	column FlightID
 		dataType: string
 		lineageTag: 69fb4484-187d-45ae-b035-f72a6670e46d

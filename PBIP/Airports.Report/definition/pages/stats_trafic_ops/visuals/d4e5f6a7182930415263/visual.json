@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "d4e5f6a7182930415263",
+  "position": {
+    "x": 740,
+    "y": 70,
+    "z": 3,
+    "height": 110,
+    "width": 220
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Flights"
+                    }
+                  },
+                  "Property": "Retard moyen (min)"
+                }
+              },
+              "queryRef": "Fact_Flights.Retard moyen (min)",
+              "nativeQueryRef": "Retard moyen (min)"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,25 @@
+Copiez-collez ce script dans l’éditeur Python du visuel (onglet du bas) si le script n’apparaît pas après ouverture du PBIP, puis cliquez sur Exécuter.
+
+import matplotlib.pyplot as plt
+
+x = dataset["FactIndex"]
+y = dataset["Length"]
+s = dataset["Length"].clip(20, 200) * 3
+fig, ax = plt.subplots()
+sc = ax.scatter(
+    x,
+    y,
+    s=s,
+    c=y,
+    cmap="coolwarm",
+    alpha=0.75,
+    edgecolors="#222222",
+    linewidths=0.5,
+)
+ax.set_xlabel("Index du fait")
+ax.set_ylabel("Length (API)")
+ax.set_title("Bulles Python (taille = Length)")
+cb = fig.colorbar(sc, ax=ax)
+cb.set_label("Length")
+plt.tight_layout()
+plt.show()

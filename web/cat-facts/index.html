@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Faits sur les chats — API Cat Facts</title>
+    <style>
+      :root {
+        --bg: #0a0a0a;
+        --card: #171717;
+        --text: #ededed;
+        --muted: #a1a1aa;
+        --accent: #0070f3;
+        --cat-fur: #e4e4e7;
+        --cat-nose: #fda4af;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Segoe UI", system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 1rem;
+      }
+      h1 {
+        font-weight: 600;
+        font-size: 1.35rem;
+        margin: 0 0 0.25rem;
+      }
+      .sub {
+        color: var(--muted);
+        font-size: 0.85rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        max-width: 36rem;
+        line-height: 1.5;
+      }
+      .sub a {
+        color: var(--accent);
+      }
+      main {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        justify-content: center;
+        align-items: flex-start;
+        max-width: 52rem;
+      }
+      .panel {
+        background: var(--card);
+        border: 1px solid #27272a;
+        border-radius: 12px;
+        padding: 1.25rem 1.5rem;
+      }
+      .cat-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .cat-wrap svg {
+        overflow: visible;
+        filter: drop-shadow(0 8px 24px rgba(0, 112, 243, 0.12));
+      }
+      .fact-panel {
+        flex: 1;
+        min-width: 280px;
+        max-width: 420px;
+      }
+      blockquote {
+        margin: 0;
+        font-size: 1.05rem;
+        line-height: 1.6;
+        border-left: 3px solid var(--accent);
+        padding-left: 1rem;
+      }
+      .meta {
+        margin-top: 1rem;
+        font-size: 0.75rem;
+        color: var(--muted);
+      }
+      .meta.ok-heroku {
+        color: #50e3c2;
+      }
+      .meta.fallback {
+        color: #f4a723;
+      }
+      button {
+        margin-top: 1rem;
+        padding: 0.55rem 1rem;
+        border-radius: 8px;
+        border: 1px solid #3f3f46;
+        background: #000;
+        color: var(--text);
+        font-size: 0.9rem;
+        cursor: pointer;
+      }
+      button:hover {
+        border-color: var(--accent);
+        color: #fff;
+      }
+      button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      /* SVG dynamique : queue, paupières, oreilles */
+      @keyframes tailSway {
+        0%,
+        100% {
+          transform: rotate(-6deg);
+        }
+        50% {
+          transform: rotate(10deg);
+        }
+      }
+      @keyframes earTwitch {
+        0%,
+        92%,
+        100% {
+          transform: rotate(0deg);
+        }
+        94% {
+          transform: rotate(-4deg);
+        }
+        96% {
+          transform: rotate(2deg);
+        }
+      }
+      @keyframes blink {
+        0%,
+        45%,
+        55%,
+        100% {
+          transform: scaleY(0.15);
+        }
+        50% {
+          transform: scaleY(1.05);
+        }
+      }
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-4px);
+        }
+      }
+      .cat-root.bounce {
+        animation: bounce 0.45s ease;
+      }
+      #g-tail {
+        transform-origin: 118px 132px;
+        animation: tailSway 2.2s ease-in-out infinite;
+      }
+      #g-ears {
+        transform-origin: 100px 78px;
+        animation: earTwitch 5s ease-in-out infinite;
+      }
+      .eye-lid {
+        transform-origin: 0 -10px;
+        animation: blink 3.5s ease-in-out infinite;
+      }
+      #eye-right .eye-lid {
+        animation-delay: 0.12s;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Faits sur les chats</h1>
+    <p class="sub">
+      Données issues de l’API documentée sur
+      <a href="https://alexwohlbruck.github.io/cat-facts/" rel="noopener noreferrer" target="_blank"
+        >cat-facts</a
+      >
+      (base
+      <code style="font-size: 0.8em">https://cat-fact.herokuapp.com</code>,
+      endpoint
+      <code style="font-size: 0.8em">GET /facts/random</code>). Si Heroku répond une erreur, un second service public est utilisé.
+      Ouvrir cette page via un petit serveur local (<code>python3 -m http.server 8765</code>) évite certains blocages du navigateur.
+    </p>
+
+    <main>
+      <div class="panel cat-wrap" aria-hidden="false">
+        <svg
+          id="cat-svg"
+          class="cat-root"
+          width="200"
+          height="200"
+          viewBox="0 0 200 200"
+          role="img"
+          aria-label="Illustration animée de chat"
+        >
+          <defs>
+            <linearGradient id="fur" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color: #fafafa" />
+              <stop offset="100%" style="stop-color: #d4d4d8" />
+            </linearGradient>
+          </defs>
+          <!-- Ombre au sol -->
+          <ellipse cx="100" cy="178" rx="48" ry="8" fill="#000" opacity="0.35" />
+          <g id="g-tail">
+            <path
+              d="M 138 120 Q 175 95 185 130 Q 178 145 160 135 Q 148 128 138 125 Z"
+              fill="url(#fur)"
+              stroke="#71717a"
+              stroke-width="1.2"
+            />
+          </g>
+          <!-- Corps -->
+          <ellipse cx="100" cy="138" rx="52" ry="40" fill="url(#fur)" stroke="#71717a" stroke-width="1.2" />
+          <!-- Tête -->
+          <circle cx="100" cy="88" r="44" fill="url(#fur)" stroke="#71717a" stroke-width="1.2" />
+          <g id="g-ears">
+            <path d="M 62 52 L 52 22 L 78 44 Z" fill="url(#fur)" stroke="#71717a" stroke-width="1.2" />
+            <path d="M 138 52 L 148 22 L 122 44 Z" fill="url(#fur)" stroke="#71717a" stroke-width="1.2" />
+            <path d="M 66 46 L 60 30 L 72 40 Z" fill="#fda4af" opacity="0.7" />
+            <path d="M 134 46 L 140 30 L 128 40 Z" fill="#fda4af" opacity="0.7" />
+          </g>
+          <!-- Museau -->
+          <ellipse cx="100" cy="102" rx="14" ry="10" fill="#f4f4f5" stroke="#a1a1aa" stroke-width="0.8" />
+          <polygon points="100,98 94,106 106,106" fill="#fda4af" />
+          <!-- Yeux avec clignement -->
+          <g id="eye-left" transform="translate(82, 78)">
+            <ellipse cx="0" cy="0" rx="9" ry="11" fill="#18181b" />
+            <ellipse cx="2" cy="-3" rx="3" ry="3" fill="#fff" opacity="0.75" />
+            <ellipse class="eye-lid" cx="0" cy="0" rx="9" ry="11" fill="#d4d4d8" stroke="#a1a1aa" stroke-width="0.5" />
+          </g>
+          <g id="eye-right" transform="translate(118, 78)">
+            <ellipse cx="0" cy="0" rx="9" ry="11" fill="#18181b" />
+            <ellipse cx="2" cy="-3" rx="3" ry="3" fill="#fff" opacity="0.75" />
+            <ellipse class="eye-lid" cx="0" cy="0" rx="9" ry="11" fill="#d4d4d8" stroke="#a1a1aa" stroke-width="0.5" />
+          </g>
+          <!-- Moustaches -->
+          <line x1="48" y1="96" x2="72" y2="94" stroke="#a1a1aa" stroke-width="1.2" stroke-linecap="round" />
+          <line x1="48" y1="104" x2="72" y2="102" stroke="#a1a1aa" stroke-width="1.2" stroke-linecap="round" />
+          <line x1="152" y1="96" x2="128" y2="94" stroke="#a1a1aa" stroke-width="1.2" stroke-linecap="round" />
+          <line x1="152" y1="104" x2="128" y2="102" stroke="#a1a1aa" stroke-width="1.2" stroke-linecap="round" />
+        </svg>
+        <span style="font-size: 0.8rem; color: var(--muted)">SVG animé (queue, oreilles, clignement)</span>
+      </div>
+
+      <div class="panel fact-panel">
+        <blockquote id="fact-text">Chargement d’un fait félin…</blockquote>
+        <p id="fact-source" class="meta"></p>
+        <button type="button" id="btn-refresh">Nouveau fait</button>
+      </div>
+    </main>
+
+    <script>
+      (function () {
+        const PRIMARY =
+          "https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=1";
+        const FALLBACK = "https://catfact.ninja/fact";
+
+        const factEl = document.getElementById("fact-text");
+        const sourceEl = document.getElementById("fact-source");
+        const btn = document.getElementById("btn-refresh");
+        const catSvg = document.getElementById("cat-svg");
+
+        function bounceCat() {
+          catSvg.classList.remove("bounce");
+          void catSvg.offsetWidth;
+          catSvg.classList.add("bounce");
+        }
+
+        async function fetchPrimary() {
+          const res = await fetch(PRIMARY, { cache: "no-store" });
+          if (!res.ok) throw new Error("primary " + res.status);
+          const data = await res.json();
+          const text = Array.isArray(data) ? data[0] && data[0].text : data && data.text;
+          if (!text) throw new Error("primary shape");
+          return { text, source: "heroku", label: "API Cat Facts (Heroku) — conforme à la doc officielle." };
+        }
+
+        async function fetchFallback() {
+          const res = await fetch(FALLBACK, { cache: "no-store" });
+          if (!res.ok) throw new Error("fallback " + res.status);
+          const data = await res.json();
+          if (!data || !data.fact) throw new Error("fallback shape");
+          return {
+            text: data.fact,
+            source: "ninja",
+            label: "Secours : catfact.ninja (Heroku indisponible).",
+          };
+        }
+
+        function localFallback() {
+          return {
+            text:
+              "Impossible de joindre les API pour l’instant. Les chats ont environ 230 os ; le squelette du cou est très souple pour leur permettre de se retourner dans des espaces étroits.",
+            source: "local",
+            label: "Hors ligne — texte local.",
+          };
+        }
+
+        async function loadFact() {
+          btn.disabled = true;
+          factEl.textContent = "…";
+          sourceEl.textContent = "";
+          try {
+            let r;
+            try {
+              r = await fetchPrimary();
+              sourceEl.textContent = r.label;
+              sourceEl.className = "meta ok-heroku";
+            } catch {
+              try {
+                r = await fetchFallback();
+                sourceEl.textContent = r.label;
+                sourceEl.className = "meta fallback";
+              } catch {
+                r = localFallback();
+                sourceEl.textContent = r.label;
+                sourceEl.className = "meta";
+              }
+            }
+            factEl.textContent = r.text;
+            bounceCat();
+          } finally {
+            btn.disabled = false;
+          }
+        }
+
+        btn.addEventListener("click", loadFact);
+        loadFact();
+      })();
+    </script>
+  </body>
+</html>

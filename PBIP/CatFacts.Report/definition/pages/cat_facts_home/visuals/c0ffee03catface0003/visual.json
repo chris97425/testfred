@@ -1,0 +1,111 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "c0ffee03catface0003",
+  "position": {
+    "x": 32,
+    "y": 448,
+    "z": 2,
+    "height": 248,
+    "width": 1216
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CatFacts"
+                    }
+                  },
+                  "Property": "FactIndex"
+                }
+              },
+              "queryRef": "CatFacts.FactIndex",
+              "nativeQueryRef": "FactIndex"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CatFacts"
+                    }
+                  },
+                  "Property": "Length"
+                }
+              },
+              "queryRef": "CatFacts.Length",
+              "nativeQueryRef": "Length"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CatFacts"
+                    }
+                  },
+                  "Property": "FactText"
+                }
+              },
+              "queryRef": "CatFacts.FactText",
+              "nativeQueryRef": "FactText"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "1f9d57a9d7d0699d3c90",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "CatFacts"
+              }
+            },
+            "Property": "FactIndex"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "655f2ca2fe7523cf647e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "CatFacts"
+              }
+            },
+            "Property": "Length"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "11f5ff7e065d7b3084e5",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "CatFacts"
+              }
+            },
+            "Property": "FactText"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

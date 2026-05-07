@@ -1,0 +1,48 @@
+---
+description: Safeguards for Power BI PBIP model, report edits, and Python-related report work
+globs:
+  - PBIP/**/*.{tmdl,json}
+  - "**/script-python*.txt"
+alwaysApply: false
+---
+
+# Power BI PBIP Safeguards
+
+When editing Power BI PBIP files, preserve model consistency before changing report visuals or semantic model definitions.
+
+- Before adding a measure, search all `PBIP/**/*.tmdl` files for an existing `measure '<name>'` or `measure <name>` declaration.
+- Do not create duplicate measure names. If a measure already exists, reuse it in visuals or update the existing declaration instead.
+- Keep measure names stable when visuals already reference them. Rename only when all references in report JSON and TMDL files are updated together.
+- Prefer adding or editing measures in the semantic model `.tmdl` table where the related fact data lives.
+- When editing report `.json` files, validate that every referenced measure exists exactly once in the semantic model.
+
+Example check before creating a measure:
+
+```sh
+rg "measure 'Total passagers'|measure Total passagers" PBIP/**/*.tmdl
+```
+
+## Python — quand la demande concerne Python dans Power BI
+
+Distinguer **trois usages** avant d’implémenter :
+
+| Usage | Où ça vit | Rôle |
+|--------|-----------|------|
+| **Visuel Python** (`pythonVisual`) | `definition/pages/**/visuals/**/visual.json` | `matplotlib` + `pandas` ; DataFrame **`dataset`** (colonnes = champs ajoutés dans **Values**). |
+| **Python dans Power Query (M)** | Partitions `source = ...` en M (`Python.Execute`, rare) | Transformations ; pas un substitut aux visuels. |
+| **Hors Power BI** | ex. `web/**/*.html`, scripts | APIs, dashboards web : pas le même format que PBIP. |
+
+### Règles pour visuels Python (PBIP / PBIR)
+
+- **`visualType`** attendu : `pythonVisual` (cf. schémas / thèmes Fabric).
+- **Liaison données** : `query.queryState.Values.projections` avec des `Column` ou `Measure` ; le script ne peut utiliser que ces champs — noms stables (éviter renommage arbitraire sans mettre à jour le script).
+- **Script embarqué** dans `visual.json` : format parfois **fragile** selon la version de Desktop (`objects` / `paragraphs`, etc.). Si tu édites le JSON à la main : prévoir un fichier **`*.txt`** à côté du rapport (ex. `script-python-bulles.txt`) avec le même code pour recollage dans l’éditeur Python de Desktop.
+- **Librairies** : s’appuyer sur ce que Desktop supporte (p.ex. `pandas`, `matplotlib`, `numpy`, `seaborn` selon doc) ; tracer avec `plt.show()` sur le device par défaut.
+- **Prérequis utilisateur** : Python installé, visuels script activés, paquets installés — le signaler en réponse si tu livres un rapport avec `pythonVisual`. Doc de référence : [Visuels Python dans Power BI Desktop](https://learn.microsoft.com/fr-fr/power-bi/connect-data/desktop-python-visuals).
+- **Limites courantes** : plafond de lignes (~150k), taille des données (~250 MB), chaînes tronquées au-delà d’un seuil, timeout d’exécution, 72 DPI, pas d’interactivité de clic dans le visuel Python comme un visuel natif ; publication Service selon licence / région Fabric.
+- **Sécurité** : ne pas injecter de scripts opaques ; rappeler que les visuels Python exécutent du code côté auteur.
+
+### Libellés et réponses
+
+- Si la demande est **« Python dans Power BI »** pour des graphiques : privilégier **`pythonVisual`** + champs liés + script documenté ; ne pas confondre avec un rapport web Python pur.
+- Si **Desktop corrige ou vide** le script au chargement : c’est normal ; l’usage du fichier `.txt` de secours ou une passe dans l’UI Desktop reste la source de vérité.

@@ -1,0 +1,134 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "c0ffee02catface0002",
+  "position": {
+    "x": 340,
+    "y": 88,
+    "z": 1,
+    "height": 340,
+    "width": 908
+  },
+  "visual": {
+    "visualType": "pythonVisual",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CatFacts"
+                    }
+                  },
+                  "Property": "FactIndex"
+                }
+              },
+              "queryRef": "CatFacts.FactIndex",
+              "nativeQueryRef": "FactIndex"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CatFacts"
+                    }
+                  },
+                  "Property": "Length"
+                }
+              },
+              "queryRef": "CatFacts.Length",
+              "nativeQueryRef": "Length"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CatFacts"
+                    }
+                  },
+                  "Property": "FactText"
+                }
+              },
+              "queryRef": "CatFacts.FactText",
+              "nativeQueryRef": "FactText"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "script": [
+        {
+          "properties": {
+            "source": {
+              "expr": {
+                "Literal": {
+                  "Value": "'# Le code suivant, qui crée un dataframe et supprime les lignes dupliquées, est toujours exécuté et sert de préambule à votre script : \n\n# dataset = pandas.DataFrame(FactIndex, Length, FactText)\n# dataset = dataset.drop_duplicates()\n\n# Collez ou tapez votre code de script ici :\nimport matplotlib.pyplot as plt\n\nx = dataset[\"FactIndex\"]\ny = dataset[\"Length\"]\ns = dataset[\"Length\"].clip(20, 200) * 3\nfig, ax = plt.subplots()\nsc = ax.scatter(\n    x,\n    y,\n    s=s,\n    c=y,\n    cmap=\"coolwarm\",\n    alpha=0.75,\n    edgecolors=\"#222222\",\n    linewidths=0.5,\n)\nax.set_xlabel(\"Index du fait\")\nax.set_ylabel(\"Length (API)\")\nax.set_title(\"Bulles Python (taille = Length)\")\ncb = fig.colorbar(sc, ax=ax)\ncb.set_label(\"Length\")\nplt.tight_layout()\nplt.show()'"
+                }
+              }
+            },
+            "provider": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Python'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "600f02ecc21bb00e0b4f",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "CatFacts"
+              }
+            },
+            "Property": "FactIndex"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "63f7873c4697edabc375",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "CatFacts"
+              }
+            },
+            "Property": "Length"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "a41d35927027453883a9",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "CatFacts"
+              }
+            },
+            "Property": "FactText"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  },
+  "howCreated": "InsertVisualButton"
+}

@@ -30,7 +30,7 @@ table DimAirline
 			VAR SparklineTableBase =
 			    ADDCOLUMNS(
 			        ALLSELECTED('Dim_Date'[Date]),
-			        "PaxValue", CALCULATE([Total Passagers])
+			        "PaxValue", CALCULATE([Total passagers])
 			    )
 			
 			VAR YMinValue =
@@ -129,18 +129,12 @@ table DimAirline
 			
 			RETURN
 			    IF(
-			        ISBLANK([Total Passagers]) || ISBLANK(Lines),
+			        ISBLANK([Total passagers]) || ISBLANK(Lines),
 			        BLANK(),
 			        SVGImageURL
 			    )
 		lineageTag: a8f3032e-5652-4316-ad2d-3a944c3f9f55
 		dataCategory: ImageUrl
-
-	measure 'Total Passagers' =
-			
-			COUNTROWS(Fact_Incidents)
-		formatString: 0
-		lineageTag: 54caf8f7-80b8-48e2-a56c-0eb949c52f92
 
 	measure MesureTest = 4
 		formatString: 0

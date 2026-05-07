@@ -27,3 +27,27 @@ relationship 43e738ee-e1b9-61bc-61db-98833dd65a53
 	fromColumn: Fact_Incidents.Date
 	toColumn: Dim_Date.Date
 
+relationship 8c45950f-a4b4-4a95-bf44-fb5ebc5a2f11
+	fromColumn: Fact_Flights.TerminalID
+	toColumn: Dim_Terminal.TerminalID
+
+relationship 1f59fddf-6f01-40d7-9dc8-0692f82b68c7
+	fromColumn: Fact_Flights.RouteID
+	toColumn: Dim_Route.RouteID
+
+relationship 21d5a7fa-e7c5-45f4-b413-695cbd85d720
+	fromColumn: Fact_Baggage.Date
+	toColumn: Dim_Date.Date
+
+relationship b19f1f68-7d31-49e2-b744-a0c6df08c281
+	fromColumn: Fact_Baggage.TerminalID
+	toColumn: Dim_Terminal.TerminalID
+
+relationship cfe10e8d-88c1-4dac-a783-b831a7ed6522
+	fromColumn: Fact_QueueEvents.Date
+	toColumn: Dim_Date.Date
+
+relationship 4e9a0603-7e5b-4455-86bd-35f978933086
+	fromColumn: Fact_QueueEvents.TerminalID
+	toColumn: Dim_Terminal.TerminalID
+
